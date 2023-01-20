@@ -2,7 +2,7 @@
 UVic Seng 371 Group project repository
 
 
-Develop: Group 16 /n
+Develop: Group 16 \n
 Client: Group 14
 
 Group 13 Members:
