@@ -1,0 +1,21 @@
+version: '3'
+services:
+  # nodejs-server:
+  #   build:
+  #     context: ./api
+  #   ports:
+  #     - "3080:3080"
+  #   container_name: node-api
+  #   volumes:
+  #      - ./api:/usr/src/app/api
+  #      - /usr/src/app/api/node_modules
+  frontend-app:
+    build:
+      context: ./app
+    ports:
+      - "3000:3000"
+    container_name: frontend-app
+    stdin_open: true
+    volumes:
+       - ./app:/usr/src/app
+       - /usr/src/app/node_modules
