@@ -11,19 +11,19 @@ build-web: ## Builds all backend+web containers
 	@echo "==============================================="
 	@echo "Make: build-web - building web images"
 	@echo "==============================================="
-	@docker-compose -f docker-compose.yml build 
+	@docker-compose -f docker-compose.yml build app
 
 run-web: ## Runs all backend+web containers
 	@echo "==============================================="
 	@echo "Make: run-web - running web images"
 	@echo "==============================================="
-	@docker-compose -f docker-compose.yml up -d
+	@docker-compose -f docker-compose.yml up -d db app
 
 log-app: ## Runs `docker logs <container> -f` for the app container
 	@echo "==============================================="
 	@echo "Running docker logs for the app container"
 	@echo "==============================================="
-	@docker logs frontend-app -f 
+	@docker logs app -f
 
 close: ## Closes all project containers
 	@echo "==============================================="

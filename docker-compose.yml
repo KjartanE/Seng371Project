@@ -1,21 +1,33 @@
-version: '3'
+version: "3"
 services:
-  # nodejs-server:
-  #   build:
-  #     context: ./api
-  #   ports:
-  #     - "3080:3080"
-  #   container_name: node-api
-  #   volumes:
-  #      - ./api:/usr/src/app/api
-  #      - /usr/src/app/api/node_modules
-  frontend-app:
+  ## Build mysql docker image
+  db:
+    container_name: db
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - 3306:3306
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+      - ./database/data.sql:/docker-entrypoint-initdb.d/data.sql
+
+  ## Build the app docker image
+  app:
     build:
       context: ./app
     ports:
       - "3000:3000"
-    container_name: frontend-app
+    container_name: app
     stdin_open: true
     volumes:
-       - ./app:/usr/src/app
-       - /usr/src/app/node_modules
+      - ./app:/usr/src/app
+      - /usr/src/app/node_modules
+
+volumes:
+    db_data:
