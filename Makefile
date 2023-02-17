@@ -25,6 +25,12 @@ log-app: ## Runs `docker logs <container> -f` for the app container
 	@echo "==============================================="
 	@docker logs app -f
 
+log-db: ## Runs `docker logs <container> -f` for the db container
+	@echo "==============================================="
+	@echo "Running docker logs for the db container"
+	@echo "==============================================="
+	@docker logs db -f
+
 close: ## Closes all project containers
 	@echo "==============================================="
 	@echo "Make: close - closing Docker containers"
