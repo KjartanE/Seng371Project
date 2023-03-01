@@ -1,51 +1,96 @@
 const fs = require("fs")
-
-// users in JSON file for simplicity, store in a db for production applications
-let users = require("data/users.json")
+import excuteQuery from "../../lib/db"
 
 export const usersRepo = {
-  getAll: () => users,
-  getById: (id: number) =>
-    users.find((x: any) => x.id.toString() === id.toString()),
-  find: (x: any) => users.find(x),
+  getAll: () => getAll(),
+  // getById: (id: number) =>
+  //   users.find((x: any) => x.id.toString() === id.toString()),
+  find: (x: any) => find(x),
+  findEmail: (x: any) => findEmail(x),
   create,
-  update,
-  delete: _delete,
+  // update,
+  // delete: _delete,
 }
 
-function create(user: any) {
-  // generate new user id
-  user.id = users.length ? Math.max(...users.map((x: any) => x.id)) + 1 : 1
-
-  // set date created and updated
-  user.dateCreated = new Date().toISOString()
-  user.dateUpdated = new Date().toISOString()
-
-  // add and save user
-  users.push(user)
-  saveData()
+export interface IUsers {
+  login_id: number
+  user_id: number
+  user_last_name: string
+  user_first_name: string
+  phone?: string
+  address?: string
+  city?: string
+  state?: string
+  postal_code?: string
+  country?: string
 }
 
-function update(id: number, params: any) {
-  const user = users.find((x: any) => x.id.toString() === id.toString())
-
-  // set date updated
-  user.dateUpdated = new Date().toISOString()
-
-  // update and save
-  Object.assign(user, params)
-  saveData()
+const getAll = async () => {
+  try {
+    const result = await excuteQuery(`SELECT * FROM users`, [])
+    return result
+  } catch (error) {
+    console.log(error)
+  }
 }
 
-// prefixed with underscore '_' because 'delete' is a reserved word in javascript
-function _delete(id: number) {
-  // filter out deleted user and save
-  users = users.filter((x: any) => x.id.toString() !== id.toString())
-  saveData()
+const find = async (username: string) => {
+  try {
+    const result = await excuteQuery("SELECT * FROM login WHERE username = ?", [
+      username,
+    ])
+    return result[0]
+  } catch (error) {
+    console.log(error)
+  }
 }
 
-// private helper functions
-
-function saveData() {
-  fs.writeFileSync("data/users.json", JSON.stringify(users, null, 4))
+const findEmail = async (email: string) => {
+  try {
+    const result = await excuteQuery("SELECT * FROM login WHERE email = ?", [
+      email,
+    ])
+    return result
+  } catch (error) {
+    console.log(error)
+  }
 }
+
+async function create(user: any) {
+  console.log("user", user)
+  try {
+    const result = await excuteQuery("INSERT INTO login VALUES(?)", [
+      user.username,
+      user.hash,
+      user.email,
+    ])
+    console.log("result", result)
+    return result
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// function update(id: number, params: any) {
+//   const user = users.find((x: any) => x.id.toString() === id.toString())
+
+//   // set date updated
+//   user.dateUpdated = new Date().toISOString()
+
+//   // update and save
+//   Object.assign(user, params)
+//   saveData()
+// }
+
+// // prefixed with underscore '_' because 'delete' is a reserved word in javascript
+// function _delete(id: number) {
+//   // filter out deleted user and save
+//   users = users.filter((x: any) => x.id.toString() !== id.toString())
+//   saveData()
+// }
+
+// // private helper functions
+
+// function saveData() {
+//   fs.writeFileSync("data/users.json", JSON.stringify(users, null, 4))
+// }

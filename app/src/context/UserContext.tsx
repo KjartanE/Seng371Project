@@ -1,4 +1,3 @@
-import getConfig from "next/config"
 import { useRouter } from "next/router"
 import {
   createContext,
@@ -9,8 +8,7 @@ import {
 } from "react"
 import { fetchWrapper } from "../helpers/fetch-wrapper"
 
-const { publicRuntimeConfig } = getConfig()
-const baseUrl = `${publicRuntimeConfig.apiUrl}/user`
+const baseUrl = `/api/account`
 
 export type authContextType = {
   user: userData | null
@@ -74,12 +72,15 @@ export function AuthProvider({ children }: Props) {
     }
   }, [user])
 
-  const login = async (email: string, password: string) => {
+  const login = async (username: string, password: string) => {
+    console.log('password', password);
+    console.log('username', username);
     const loggedUser = await fetchWrapper.post(`${baseUrl}/login`, {
-      email,
+      username,
       password,
     })
-
+    
+    console.log('loggedUser', loggedUser);
     if (loggedUser) {
       setUser(loggedUser)
     }
@@ -94,16 +95,19 @@ export function AuthProvider({ children }: Props) {
   }
 
   const register = async (signupDetails: userRegister) => {
+    console.log('signupDetails', signupDetails);
     const JSONdata = JSON.stringify({
-      usernameq: signupDetails.username,
+      username: signupDetails.username,
       email: signupDetails.email,
       password: signupDetails.password1,
     })
-
+    
+    console.log('JSONdata', JSONdata);
     const response = await fetchWrapper.post(`${baseUrl}/signup`, {
       JSONdata,
     })
-
+    
+    console.log('response', response);
     if (response) {
       router.push("/account/login")
       return true

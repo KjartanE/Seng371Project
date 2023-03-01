@@ -7,7 +7,7 @@ import { useAuth } from "../../context/UserContext"
 import { useState } from "react"
 
 export const loginSchema = Yup.object().shape({
-  email: Yup.string().email().required("Required"),
+  username: Yup.string().required("Required"),
   password: Yup.string().required("Required").min(3, "Too Short!"),
 })
 
@@ -18,17 +18,17 @@ const LoginForm = () => {
   const [snackbar, setSnackbar] = useState<boolean>(false)
 
   const sendLogin = async (loginDetails: {
-    email: string
+    username: string
     password: string
   }) => {
     try {
       const user = await userContext.login(
-        loginDetails.email,
+        loginDetails.username,
         loginDetails.password
       )
 
       if (user) {
-        router.push("/main/message")
+        router.push("/main")
       }
     } catch (error) {
       setSnackbar(true)
@@ -52,7 +52,7 @@ const LoginForm = () => {
       </Snackbar>
       <Formik
         validationSchema={loginSchema}
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ username: "", password: "" }}
         onSubmit={(values) => {
           sendLogin(values)
         }}
@@ -71,17 +71,19 @@ const LoginForm = () => {
                 <form noValidate onSubmit={handleSubmit}>
                   <Box m={2}>
                     <TextField
-                      type="email"
-                      name="email"
-                      label="Email"
+                      type="username"
+                      name="username"
+                      label="Username"
                       variant="outlined"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.email}
-                      helperText={errors.email && touched.email && errors.email}
-                      placeholder="Enter email id / username"
+                      value={values.username}
+                      helperText={
+                        errors.username && touched.username && errors.username
+                      }
+                      placeholder="Enter username id / username"
                       className="form-control inp_text"
-                      id="email"
+                      id="username"
                     />
                   </Box>
                   <Box m={2}>
