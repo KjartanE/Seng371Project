@@ -3,9 +3,9 @@
 DROP TABLE IF EXISTS `login`;
 
 CREATE TABLE `login` (
-  `login_id` int(11) NOT NULL,
-  `username` varchar(15) DEFAULT NULL,
-  `password` varchar(50) DEFAULT NULL,
+  `login_id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
 
   PRIMARY KEY (`login_id`)
@@ -13,9 +13,9 @@ CREATE TABLE `login` (
 
 /*Data for the table `login` */
 
-insert  into `login`(`login_id`,`username`,`password`, `email`) values 
+insert  into `login`(`username`,`password`, `email`) values 
 
-(1,'Kjartan', 'pass', 'kjartan@email.com');
+('Kjartan', 'pass', 'kj@email.com');
 
 /*Table structure for table `users` */
 
@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `login_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_last_name` varchar(50) NOT NULL,
   `user_first_name` varchar(50) NOT NULL,
   `phone` varchar(50) DEFAULT NULL,
@@ -39,9 +39,9 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`login_id`, `user_id`,`user_last_name`,`user_first_name`,`phone`,`address`,`city`,`state`,`postal_code`,`country`) values 
+insert  into `users`(`login_id`, `user_last_name`,`user_first_name`,`phone`,`address`,`city`,`state`,`postal_code`,`country`) values 
 
-(1, 1,'Einarsson','Kjartan ','250-544-1751','123 Coding Road','Victoria','BC','123456','Canada');
+(1, 'Einarsson','Kjartan ','250-544-1751','123 Coding Road','Victoria','BC','123456','Canada');
 
 /*Table structure for table `account` */
 
@@ -49,7 +49,7 @@ DROP TABLE IF EXISTS `accounts`;
 
 CREATE TABLE `accounts` (
   `user_id` int(11) NOT NULL,
-  `account_id` int(11) NOT NULL,
+  `account_id` int(11) NOT NULL AUTO_INCREMENT,
   `checking` decimal(20,2) DEFAULT NULL,
   `savings` decimal(20,2) DEFAULT NULL,
   `credit` decimal(20,2) DEFAULT NULL,
@@ -61,9 +61,9 @@ CREATE TABLE `accounts` (
 
 /*Data for the table `accounts` */
 
-insert  into `accounts`(`user_id`,`account_id`,`checking`,`savings`, `credit`,`credit_limit`) values 
+insert  into `accounts`(`user_id`,`checking`,`savings`, `credit`,`credit_limit`) values 
 
-(1, 1,'6066.78','6066.78','6066.78','50000.00');
+(1, '6066.78','6066.78','6066.78','50000.00');
 
 /*Table structure for table `payments` */
 

@@ -9,10 +9,9 @@ export default async function handler(
   const { username, password } = req.body
 
   const user = await usersRepo.find(username)
-  console.log('user', user);
 
   //validate
-  if (!(user && bcrypt.compareSync(password, user.hash))) {
+  if (!(user && bcrypt.compareSync(password, user.password))) {
     throw "username or password is incorrect"
   }
 

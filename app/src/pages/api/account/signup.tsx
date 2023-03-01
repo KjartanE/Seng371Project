@@ -9,15 +9,11 @@ export default async function handler(
 ) {
   // split out password from user details
   const { JSONdata } = req.body
-  console.log('JSONdata', JSONdata);
   const { password, ...user } = JSON.parse(JSONdata)
-  console.log('password', password);
-  console.log('user', user);
 
   // validate
   const checkEmail = await usersRepo.findEmail(user.email)
-  console.log('checkEmail', checkEmail);
-  if (!!checkEmail.length) {
+  if (!checkEmail || !!checkEmail.length) {
     throw `User with the email "${user.email}" already exists`
   }
 

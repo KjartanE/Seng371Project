@@ -15,7 +15,6 @@ export type authContextType = {
   login: (username: string, password: string) => any
   logout: () => void
   register: (signupDetails: userRegister) => any
-  findUser: (id: number) => any
   currentUser: () => userData | undefined
 }
 
@@ -36,7 +35,6 @@ const authContextDefaultValues: authContextType = {
   login: () => null,
   logout: () => {},
   register: () => null,
-  findUser: () => null,
   currentUser: () => undefined,
 }
 
@@ -50,10 +48,25 @@ type Props = {
   children: ReactNode
 }
 
+/**
+ * AuthProvider is the Auth Context across the application that can be accessed
+ * from any level of the app.
+ *
+ * @export
+ * @param {Props} { children }
+ * @return {*}
+ */
 export function AuthProvider({ children }: Props) {
   const router = useRouter()
+
+  //This setstate holds the reference of the current logged in user
   const [user, setUser] = useState<authContextType["user"]>(null)
 
+  /**
+   * This useEffect is triggered anytime the app loads
+   * Which means for any reload it will check the localStorage cache to check,
+   * if a user is currently logged in
+   */
   useEffect(() => {
     const storageUser = localStorage.getItem("user")
 
@@ -66,21 +79,29 @@ export function AuthProvider({ children }: Props) {
     }
   }, [])
 
+  /**
+   * This useEffect is triggered anytime that the user state is changed
+   * Which means if a user logs in then it will be cached into the webpage
+   */
   useEffect(() => {
     if (user !== authContextDefaultValues.user) {
       localStorage.setItem("user", JSON.stringify(user))
     }
   }, [user])
 
+  /**
+   * Login function for the UserContext
+   *
+   * @param {string} username
+   * @param {string} password
+   * @return {*}
+   */
   const login = async (username: string, password: string) => {
-    console.log('password', password);
-    console.log('username', username);
     const loggedUser = await fetchWrapper.post(`${baseUrl}/login`, {
       username,
       password,
     })
-    
-    console.log('loggedUser', loggedUser);
+
     if (loggedUser) {
       setUser(loggedUser)
     }
@@ -88,26 +109,32 @@ export function AuthProvider({ children }: Props) {
     return loggedUser
   }
 
+  /**
+   * Logout function for the user Context
+   */
   const logout = () => {
     setUser(null)
     localStorage.setItem("user", JSON.stringify(null))
     router.push("/")
   }
 
+  /**
+   * Register function
+   *
+   * @param {userRegister} signupDetails
+   * @return {*}
+   */
   const register = async (signupDetails: userRegister) => {
-    console.log('signupDetails', signupDetails);
     const JSONdata = JSON.stringify({
       username: signupDetails.username,
       email: signupDetails.email,
       password: signupDetails.password1,
     })
-    
-    console.log('JSONdata', JSONdata);
+
     const response = await fetchWrapper.post(`${baseUrl}/signup`, {
       JSONdata,
     })
-    
-    console.log('response', response);
+
     if (response) {
       router.push("/account/login")
       return true
@@ -115,8 +142,6 @@ export function AuthProvider({ children }: Props) {
 
     return false
   }
-
-  const findUser = () => {}
 
   const currentUser = () => {
     if (user) {
@@ -129,7 +154,6 @@ export function AuthProvider({ children }: Props) {
     login,
     logout,
     register,
-    findUser,
     currentUser,
   }
 
