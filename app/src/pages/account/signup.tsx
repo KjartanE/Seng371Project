@@ -56,86 +56,83 @@ const SignupForm = () => {
                 <h1>SIGNUP</h1>
               </Box>
               <Box m={2} px={4} pb={4}>
-                <form noValidate onSubmit={handleSubmit}>
-                  <Grid container direction={"column"} spacing={2}>
-                    <Grid item>
-                      <TextField
-                        type="username"
-                        name="username"
-                        label="Username:"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.username}
-                        placeholder="Enter username"
-                        className="form-control inp_text"
-                        id="username"
-                        error={!!errors.username}
-                      />
-                    </Grid>
-                    <Grid item>
-                      <TextField
-                        type="email"
-                        name="email"
-                        label="Email:"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.email}
-                        placeholder="Enter email"
-                        className="form-control inp_text"
-                        id="email"
-                        helperText={
-                          errors.email && touched.email && errors.email
-                        }
-                        error={!!errors.email}
-                      />
-                    </Grid>
-                    <Grid item>
-                      <TextField
-                        type="password"
-                        name="password1"
-                        label="Password:"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.password1}
-                        placeholder="Enter password"
-                        className="form-control"
-                        error={!!errors.password1}
-                        helperText={
-                          errors.password1 &&
-                          touched.password1 &&
-                          errors.password1
-                        }
-                      />
-                    </Grid>
-                    <Grid item>
-                      <TextField
-                        type="password"
-                        name="password2"
-                        label="Password:"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.password2}
-                        placeholder="Repeat password"
-                        className="form-control"
-                        helperText={
-                          errors.password2 &&
-                          touched.password2 &&
-                          errors.password2
-                        }
-                        error={!!errors.password2}
-                      />
-                    </Grid>
-                    <Grid item>
-                      <Button
-                        sx={{ width: "50%" }}
-                        type="submit"
-                        variant="contained"
-                      >
-                        Submit
-                      </Button>
-                    </Grid>
+                <Grid container direction={"column"} spacing={2}>
+                  <Grid item>
+                    <TextField
+                      type="username"
+                      name="username"
+                      label="Username:"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.username}
+                      placeholder="Enter username"
+                      className="form-control inp_text"
+                      id="username"
+                      error={!!errors.username}
+                    />
                   </Grid>
-                </form>
+                  <Grid item>
+                    <TextField
+                      type="email"
+                      name="email"
+                      label="Email:"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.email}
+                      placeholder="Enter email"
+                      className="form-control inp_text"
+                      id="email"
+                      helperText={errors.email && touched.email && errors.email}
+                      error={!!errors.email}
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      type="password"
+                      name="password1"
+                      label="Password:"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.password1}
+                      placeholder="Enter password"
+                      className="form-control"
+                      error={!!errors.password1}
+                      helperText={
+                        errors.password1 &&
+                        touched.password1 &&
+                        errors.password1
+                      }
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      type="password"
+                      name="password2"
+                      label="Password:"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.password2}
+                      placeholder="Repeat password"
+                      className="form-control"
+                      helperText={
+                        errors.password2 &&
+                        touched.password2 &&
+                        errors.password2
+                      }
+                      error={!!errors.password2}
+                    />
+                  </Grid>
+                  <Grid item>
+                    <Button
+                      sx={{ width: "50%" }}
+                      type="submit"
+                      variant="contained"
+                      onClick={handleSubmit}
+                    >
+                      Submit
+                    </Button>
+                  </Grid>
+                </Grid>
               </Box>
             </Paper>
           </Box>

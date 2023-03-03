@@ -68,50 +68,49 @@ const LoginForm = () => {
           <Box className={styles.login}>
             <Paper>
               <Box m={4} p={4}>
-                <form noValidate onSubmit={handleSubmit}>
-                  <Box m={2}>
-                    <TextField
-                      type="username"
-                      name="username"
-                      label="Username"
-                      variant="outlined"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.username}
-                      helperText={
-                        errors.username && touched.username && errors.username
-                      }
-                      placeholder="Enter username id / username"
-                      className="form-control inp_text"
-                      id="username"
-                    />
-                  </Box>
-                  <Box m={2}>
-                    <TextField
-                      type="password"
-                      name="password"
-                      label="Password"
-                      variant="outlined"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.password}
-                      helperText={
-                        errors.password && touched.password && errors.password
-                      }
-                      placeholder="Enter password"
-                    />
-                  </Box>
-                  <Box m={2}>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      size="large"
-                      fullWidth
-                    >
-                      Login
-                    </Button>
-                  </Box>
-                </form>
+                <Box m={2}>
+                  <TextField
+                    type="username"
+                    name="username"
+                    label="Username"
+                    variant="outlined"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.username}
+                    helperText={
+                      errors.username && touched.username && errors.username
+                    }
+                    placeholder="Enter username id / username"
+                    className="form-control inp_text"
+                    id="username"
+                  />
+                </Box>
+                <Box m={2}>
+                  <TextField
+                    type="password"
+                    name="password"
+                    label="Password"
+                    variant="outlined"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.password}
+                    helperText={
+                      errors.password && touched.password && errors.password
+                    }
+                    placeholder="Enter password"
+                  />
+                </Box>
+                <Box m={2}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="large"
+                    fullWidth
+                    onClick={handleSubmit}
+                  >
+                    Login
+                  </Button>
+                </Box>
               </Box>
             </Paper>
           </Box>

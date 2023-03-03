@@ -44,10 +44,6 @@ export function useAuth() {
   return useContext(AuthContext)
 }
 
-type Props = {
-  children: ReactNode
-}
-
 /**
  * AuthProvider is the Auth Context across the application that can be accessed
  * from any level of the app.
@@ -56,7 +52,7 @@ type Props = {
  * @param {Props} { children }
  * @return {*}
  */
-export function AuthProvider({ children }: Props) {
+export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter()
 
   //This setstate holds the reference of the current logged in user
