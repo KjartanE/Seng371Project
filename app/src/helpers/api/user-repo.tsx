@@ -40,7 +40,7 @@ const getAll = async () => {
 const find = async (username: string) => {
   try {
     const result = await excuteQuery(
-      "SELECT `username`,`password`, `email` FROM login WHERE `username` = ?;",
+      "SELECT `login_id`,`username`,`password`, `email` FROM login WHERE `username` = ?;",
       [username]
     )
     if (result && result[0]) {
@@ -78,16 +78,46 @@ const findEmail = async (email: string) => {
  */
 async function create(user: any) {
   try {
-    const result = await excuteQuery(
-      "INSERT INTO `login`(`username`,`password`, `email`) VALUES(?,?,?);",
+    const loginResult = await excuteQuery(
+      `
+      INSERT INTO login(username,password, email) VALUES(?,?,?);
+      `,
       [user.username, user.hash, user.email]
     )
-    return result
+    // console.log("loginResult", loginResult)
+
+    const userResult = await excuteQuery(
+      `
+      INSERT INTO users(login_id,user_last_name, user_first_name) VALUES(?,?,?);
+      `,
+      [loginResult.insertId, user.username, user.username]
+    )
+    // console.log("userResult", userResult)
+
+    const accountResult = await excuteQuery(
+      `
+      INSERT INTO accounts(user_id,checking, savings, credit,credit_limit) VALUES(?,?,?,?,?);
+      `,
+      [userResult.insertId, 100, 100, 100, 1000]
+    )
+    // console.log("accountResult", accountResult)
+
+    return loginResult
   } catch (error) {
     console.log(error)
   }
 }
 
+async function getLastId(): Promise<number> {
+  const lastId = await excuteQuery(
+    `
+      SELECT LAST_INSERT_ID();
+      `,
+    []
+  )
+
+  return lastId
+}
 // function update(id: number, params: any) {
 //   const user = users.find((x: any) => x.id.toString() === id.toString())
 

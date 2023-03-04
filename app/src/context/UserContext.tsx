@@ -7,8 +7,9 @@ import {
   useEffect,
 } from "react"
 import { fetchWrapper } from "../helpers/fetch-wrapper"
+import { useAcc } from "./AccountContext"
 
-const baseUrl = `/api/account`
+const baseUrl = `/api/user`
 
 export type authContextType = {
   user: userData | null
@@ -57,7 +58,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   //This setstate holds the reference of the current logged in user
   const [user, setUser] = useState<authContextType["user"]>(null)
-
+  const accountContext = useAcc()
   /**
    * This useEffect is triggered anytime the app loads
    * Which means for any reload it will check the localStorage cache to check,
@@ -100,6 +101,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     if (loggedUser) {
       setUser(loggedUser)
+      accountContext.getAccount(loggedUser.login_id)
     }
 
     return loggedUser
@@ -132,7 +134,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     })
 
     if (response) {
-      router.push("/account/login")
+      router.push("/user/login")
       return true
     }
 

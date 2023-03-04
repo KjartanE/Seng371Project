@@ -17,7 +17,7 @@ export default async function handler(
 
   // return basic user details and token
   return res.status(200).json({
-    id: user.id,
+    login_id: user.login_id,
     username: user.username,
     email: user.email,
   })

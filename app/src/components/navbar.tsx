@@ -13,8 +13,8 @@ const NavBar: NextPage = () => {
       Nav Bar
       {!user && (
         <>
-          <Button onClick={() => router.push("/account/login")}>Login</Button>
-          <Button onClick={() => router.push("/account/signup")}>Signup</Button>
+          <Button onClick={() => router.push("/user/login")}>Login</Button>
+          <Button onClick={() => router.push("/user/signup")}>Signup</Button>
         </>
       )}
       {user && user.username && (
