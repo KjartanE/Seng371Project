@@ -23,7 +23,7 @@ export default function Main() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>Welcome to PiggyBank {user?.username || ""}</div>
-        <div>
+        <div className={styles.mainButtons}>
           <Button variant="contained" onClick={() => {
             router.push("/bankPages/accounts");
           }}>Accounts</Button>

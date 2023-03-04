@@ -22,7 +22,7 @@ export default function Main() {
         <link rel="icon" href="/piggy-bank.ico" />
       </Head>
       <main className={styles.main}>
-        <div>
+        <div className={styles.backButton}>
           <Button variant="contained" onClick={() => {
             router.push("/main")
           }}>Back</Button>

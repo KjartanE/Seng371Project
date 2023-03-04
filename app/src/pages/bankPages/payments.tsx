@@ -22,12 +22,12 @@ export default function Main() {
         <link rel="icon" href="/piggy-bank.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.description}>{user?.username || ""}, here are your recent and reccurring payments</div>
-        <div>
+        <div className={styles.backButton}>
           <Button variant="contained" onClick={() => {
             router.push("/main")
           }}>Back</Button>
         </div>
+        <div className={styles.description}>{user?.username || ""}, here are your recent and reccurring payments</div>
       </main>
     </>
   )
