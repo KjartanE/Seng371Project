@@ -9,7 +9,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #b9bdc1;
+  background: #606060;
 }
 
 .footer {
@@ -144,4 +144,19 @@
   width: 100%;
   padding: 45px;
   text-align: left;
+}
+
+.mainButtons {
+  padding-left: 175px;
+  padding-right: 175px;
+  min-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.backButton {
+  min-width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
 }
