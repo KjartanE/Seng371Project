@@ -1,17 +1,21 @@
 import Head from "next/head"
 import styles from "@/styles/Home.module.css"
 import { useAuth } from "../../context/UserContext"
+import { useAcc } from "@/context/AccountContext"
 import { Button, Box, Grid } from '@mui/material';
 import { useRouter } from "next/router"
+import { color } from "@mui/system";
 
 export default function Main() {
   const userContext = useAuth()
   const router = useRouter()
+  const accountContext = useAcc()
 
   const user = userContext.currentUser()
-  console.log('userContext', userContext);
-  console.log('userContext.currentUser()', userContext.currentUser());
+  // console.log('userContext', userContext);
+  // console.log('userContext.currentUser()', userContext.currentUser());
 
+  const account = accountContext.currentAccount()
 
   return (
     <>
@@ -25,7 +29,7 @@ export default function Main() {
         <Box sx = {{backgroundColor: 'primary.main', width: 1, height: '40%', position: 'top'}}>
           <Grid container spacing = {2} sx = {{paddingTop: '25px'}}>
             <Grid item xs ={2}>
-              <Button variant="contained" onClick={() => {
+              <Button variant="contained" color = 'secondary' onClick={() => {
                 router.push("/main")
               }}>Back</Button>
             </Grid>
@@ -47,15 +51,47 @@ export default function Main() {
           alignItems: 'center', 
           justifyContent: 'space-between'
         }}>
-          <Grid container spacing = {2} direction = 'column' sx = {{width: '70%', height: 1}}>
+          <Grid container spacing = {2} direction = 'column' sx = {{justifyContent: 'center',width: '60%', height: 1}}>
             <Grid item xs= {4} sx = {{height: '50%'}}>
-              <Box sx = {{bgcolor: '#ffffff', color: "#000000", borderRadius: 2, height: 1}}>
-                Chequing
+              <Box sx = {{
+                bgcolor: '#ffffff', 
+                color: "#000000", 
+                borderRadius: 2, 
+                height: 1, 
+                display: 'flex',
+                alignItems: 'center', 
+                justifyContent: 'space-between',
+                fontSize: 25
+                }}>
+                <Box sx = {{
+                  paddingLeft: '25px'
+                }}>Chequing: </Box>
+                <Box sx = {{
+                  fontSize: 40,
+                  paddingRight: '25px',
+                  color: 'primary.main'
+                }}>{account?.checking || ""}</Box>
               </Box>
             </Grid>
             <Grid item xs= {4} sx = {{height: '50%'}}>
-              <Box sx = {{bgcolor: '#ffffff', color: "#000000", borderRadius: 2, height: 1}}>
-                  Savings
+              <Box sx = {{
+                bgcolor: '#ffffff', 
+                color: "#000000", 
+                borderRadius: 2, 
+                height: 1, 
+                display: 'flex',
+                alignItems: 'center', 
+                justifyContent: 'space-between',
+                fontSize: 25
+                }}>
+                  <Box sx = {{
+                  paddingLeft: '25px'
+                  }}>Savings: </Box>
+                  <Box sx = {{
+                  fontSize: 40,
+                  paddingRight: '25px',
+                  color: 'primary.main'
+                  }}>{account?.savings || ""}</Box>
               </Box>
             </Grid>
           </Grid>
@@ -63,9 +99,10 @@ export default function Main() {
             bgcolor: '#ffffff', 
             color: "#000000", 
             borderRadius: 2, 
-            width: '25%', 
+            width: '35%', 
             height: '80%', 
-            padding: '15px'
+            padding: '15px',
+            fontSize: '25'
           }}>
             Budget info
           </Box>

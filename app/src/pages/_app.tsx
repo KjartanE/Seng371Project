@@ -4,14 +4,17 @@ import { ThemeProvider } from "@mui/system"
 import type { AppProps } from "next/app"
 import Layout from "./layout/layout"
 import { theme } from "@/styles/appTheme"
+import { AccProvider } from "@/context/AccountContext"
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <AccProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </AccProvider>
       </AuthProvider>
     </ThemeProvider>
   )
