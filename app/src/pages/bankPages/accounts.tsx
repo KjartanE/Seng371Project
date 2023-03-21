@@ -2,16 +2,21 @@ import Head from "next/head"
 import styles from "@/styles/Home.module.css"
 import { useAuth } from "../../context/UserContext"
 import { useAcc } from "@/context/AccountContext"
-import { Button, Box, Grid} from '@mui/material';
+import { Button, Box, Grid, Modal, Typography, TextField} from '@mui/material';
 import { useRouter } from "next/router"
 import { color } from "@mui/system";
 import { useState } from "react";
+import React from "react";
 
 
 export default function Main() {
   const userContext = useAuth()
   const router = useRouter()
   const accountContext = useAcc()
+  
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const user = userContext.currentUser()
   // console.log('userContext', userContext);
@@ -22,6 +27,24 @@ export default function Main() {
   const [savings, setSavings] = useState<number | undefined>(account?.savings)
   console.log(account?.checking, account?.savings)
   console.log(checking, savings);
+
+  const [inputValue, setInputValue] = useState(0);
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleChequing = () => {
+    // Do something with the input value here
+    console.log('Input value:', inputValue);
+    setChecking(inputValue)
+    handleClose();
+  };
+  const handleSaving = () => {
+    // Do something with the input value here
+    console.log('Input value:', inputValue);
+    setSavings(inputValue)
+    handleClose();
+  };
 
   return (
     <>
@@ -97,9 +120,37 @@ export default function Main() {
 
             <Grid item xs= {4} sx = {{height: '50%'}}>
               <Box sx = {{paddingTop: '25px'}}>
-                <Button variant="contained" color="primary" sx={{ padding: '15px'}} >
+                <Button variant="contained" color="primary" sx={{ padding: '15px'}} onClick={handleOpen}>
                   Transfer Between Accounts
                 </Button> 
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description">
+                <Box sx = {{  position: 'absolute' as 'absolute',
+                              top: '50%',
+                              left: '50%',
+                              transform: 'translate(-50%, -50%)',
+                              width: 400,
+                              bgcolor: 'background.paper',
+                              border: '2px solid #000',
+                              boxShadow: 24,
+                              alignItems: 'center', justifyContent: 'space-between',
+                              p: 4,}}>
+                  <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Add Funds
+                  </Typography>
+                  <TextField
+                    type="number"
+                    label="Input Field"
+                    value={inputValue}
+                    onChange={handleInputChange}
+                  />
+                  <Button variant="contained" color="primary" sx={{ padding: '5px'}} onClick={handleChequing}>Chequings</Button>
+                  <Button variant="contained" color="primary" sx={{ padding: '5px'}} onClick={handleSaving}>Savings</Button>
+                </Box>
+              </Modal>
               </Box>
             </Grid>
 
