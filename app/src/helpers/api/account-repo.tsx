@@ -42,10 +42,10 @@ const updateAccount = async (
     const result = await excuteQuery(
       `
       UPDATE accounts
-      SET ? = ?
+      SET ? = ? + ?
       WHERE account_id = ?
       `,
-      [column, value, accountId]
+      [column, column, value, accountId]
     )
     if (result) {
       return result
