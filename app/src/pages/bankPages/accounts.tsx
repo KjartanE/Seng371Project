@@ -5,6 +5,7 @@ import { useAcc } from "@/context/AccountContext"
 import { Button, Box, Grid} from '@mui/material';
 import { useRouter } from "next/router"
 import { color } from "@mui/system";
+import { useState } from "react";
 
 
 export default function Main() {
@@ -16,6 +17,11 @@ export default function Main() {
   // console.log('userContext', userContext);
   // console.log('userContext.currentUser()', userContext.currentUser());
   const account = accountContext.currentAccount()
+
+  const [checking, setChecking] = useState<number | undefined>(account?.checking)
+  const [savings, setSavings] = useState<number | undefined>(account?.savings)
+  console.log(account?.checking, account?.savings)
+  console.log(checking, savings);
 
   return (
     <>
@@ -64,7 +70,7 @@ export default function Main() {
                 fontSize: 25
               }}>
                 <Box sx = {{ paddingLeft: '25px' }}>Chequing: </Box>
-                <Box sx = {{ fontSize: 40, paddingRight: '25px', color: 'primary.main' }}>{account?.checking || ""}</Box>
+                <Box sx = {{ fontSize: 40, paddingRight: '25px', color: 'primary.main' }}>{checking || ""}</Box>
               </Box>
             </Grid>
             <Grid item xs= {4} sx = {{height: '50%'}}>
@@ -86,7 +92,7 @@ export default function Main() {
                   fontSize: 40,
                   paddingRight: '25px',
                   color: 'primary.main'
-                  }}>{account?.savings || ""}</Box>
+                  }}>{savings || ""}</Box>
               </Box>
 
             <Grid item xs= {4} sx = {{height: '50%'}}>
