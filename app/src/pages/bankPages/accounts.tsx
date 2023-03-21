@@ -14,7 +14,6 @@ export default function Main() {
   const user = userContext.currentUser()
   // console.log('userContext', userContext);
   // console.log('userContext.currentUser()', userContext.currentUser());
-
   const account = accountContext.currentAccount()
 
   return (

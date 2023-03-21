@@ -42,11 +42,12 @@ export function AccProvider({ children }: { children: ReactNode }) {
     }
 
     const storageUser = localStorage.getItem("user")
-
-    if (storageUser) {
-      getAcc(JSON.parse(storageUser).login_id).catch(() => {
-        console.log("Error loading account")
-      })
+    if (storageUser !== 'null') {
+      if(storageUser){
+        getAcc(JSON.parse(storageUser).login_id).catch(() => {
+          console.log("Error loading account")
+        })
+      }
     }
   }, [])
 
