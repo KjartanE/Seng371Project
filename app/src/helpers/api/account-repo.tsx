@@ -10,6 +10,7 @@ export interface IAccount {
 }
 export const accountRepo = {
   getRecord: (x: any) => getRecordByLoginId(x),
+  update: (aID: number, col: string, val: number) => updateAccount(aID, col, val),
 }
 
 const getRecordByLoginId = async (
@@ -26,6 +27,28 @@ const getRecordByLoginId = async (
     )
     if (result && result[0]) {
       return result[0]
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const updateAccount = async (
+  accountId: number,
+  column: string,
+  value: number
+): Promise<IAccount | undefined> => {
+  try {
+    const result = await excuteQuery(
+      `
+      UPDATE accounts
+      SET ? = ?
+      WHERE account_id = ?
+      `,
+      [column, value, accountId]
+    )
+    if (result) {
+      return result
     }
   } catch (error) {
     console.log(error)
