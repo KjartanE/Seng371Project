@@ -2,9 +2,10 @@ import Head from "next/head"
 import styles from "@/styles/Home.module.css"
 import { useAuth } from "../../context/UserContext"
 import { useAcc } from "@/context/AccountContext"
-import { Button, Box, Grid } from '@mui/material';
+import { Button, Box, Grid} from '@mui/material';
 import { useRouter } from "next/router"
 import { color } from "@mui/system";
+
 
 export default function Main() {
   const userContext = useAuth()
@@ -61,15 +62,9 @@ export default function Main() {
                 alignItems: 'center', 
                 justifyContent: 'space-between',
                 fontSize: 25
-                }}>
-                <Box sx = {{
-                  paddingLeft: '25px'
-                }}>Chequing: </Box>
-                <Box sx = {{
-                  fontSize: 40,
-                  paddingRight: '25px',
-                  color: 'primary.main'
-                }}>{account?.checking || ""}</Box>
+              }}>
+                <Box sx = {{ paddingLeft: '25px' }}>Chequing: </Box>
+                <Box sx = {{ fontSize: 40, paddingRight: '25px', color: 'primary.main' }}>{account?.checking || ""}</Box>
               </Box>
             </Grid>
             <Grid item xs= {4} sx = {{height: '50%'}}>
@@ -82,16 +77,26 @@ export default function Main() {
                 alignItems: 'center', 
                 justifyContent: 'space-between',
                 fontSize: 25
-                }}>
+              }}>
                   <Box sx = {{
                   paddingLeft: '25px'
                   }}>Savings: </Box>
+
                   <Box sx = {{
                   fontSize: 40,
                   paddingRight: '25px',
                   color: 'primary.main'
                   }}>{account?.savings || ""}</Box>
               </Box>
+
+            <Grid item xs= {4} sx = {{height: '50%'}}>
+              <Box sx = {{paddingTop: '25px'}}>
+                <Button variant="contained" color="primary" sx={{ padding: '15px'}} >
+                  Transfer Between Accounts
+                </Button> 
+              </Box>
+            </Grid>
+
             </Grid>
           </Grid>
           <Box sx = {{
