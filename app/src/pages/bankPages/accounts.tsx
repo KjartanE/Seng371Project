@@ -56,7 +56,7 @@ export default function Main() {
       </Head>
       <main className={styles.accountPage}>
         <Box sx = {{backgroundColor: 'primary.main', width: 1, height: '40%', position: 'top'}}>
-          <Grid container spacing = {2} sx = {{paddingTop: '25px'}}>
+          <Grid container spacing = {2} sx = {{paddingTop: '35px'}}>
             <Grid item xs ={2}>
               <Button variant="contained" color = 'secondary' onClick={() => {
                 router.push("/main")
@@ -80,8 +80,8 @@ export default function Main() {
           alignItems: 'center', 
           justifyContent: 'space-between'
         }}>
-          <Grid container spacing = {2} direction = 'column' sx = {{justifyContent: 'center',width: '60%', height: 1}}>
-            <Grid item xs= {4} sx = {{height: '50%'}}>
+          <Grid container spacing = {2} direction = 'column' sx = {{justifyContent: 'flex-start',width: '60%', height: 1}}>
+            <Grid item xs= {4} sx = {{height: '33%'}}>
               <Box sx = {{
                 bgcolor: '#ffffff', 
                 color: "#000000", 
@@ -96,7 +96,7 @@ export default function Main() {
                 <Box sx = {{ fontSize: 40, paddingRight: '25px', color: 'primary.main' }}>{checking || ""}</Box>
               </Box>
             </Grid>
-            <Grid item xs= {4} sx = {{height: '50%'}}>
+            <Grid item xs= {4} sx = {{height: '33%'}}>
               <Box sx = {{
                 bgcolor: '#ffffff', 
                 color: "#000000", 
@@ -118,42 +118,41 @@ export default function Main() {
                   }}>{savings || ""}</Box>
               </Box>
 
-            <Grid item xs= {4} sx = {{height: '50%'}}>
-              <Box sx = {{paddingTop: '25px'}}>
-                <Button variant="contained" color="primary" sx={{ padding: '15px'}} onClick={handleOpen}>
-                  Transfer Between Accounts
-                </Button> 
-                <Modal
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description">
-                <Box sx = {{  position: 'absolute' as 'absolute',
-                              top: '50%',
-                              left: '50%',
-                              transform: 'translate(-50%, -50%)',
-                              width: 400,
-                              bgcolor: 'background.paper',
-                              border: '2px solid #000',
-                              boxShadow: 24,
-                              alignItems: 'center', justifyContent: 'space-between',
-                              p: 4,}}>
-                  <Typography id="modal-modal-title" variant="h6" component="h2">
-                    Add Funds
-                  </Typography>
-                  <TextField
-                    type="number"
-                    label="Input Field"
-                    value={inputValue}
-                    onChange={handleInputChange}
-                  />
-                  <Button variant="contained" color="primary" sx={{ padding: '5px'}} onClick={handleChequing}>Chequings</Button>
-                  <Button variant="contained" color="primary" sx={{ padding: '5px'}} onClick={handleSaving}>Savings</Button>
+              <Grid item xs= {6} sx = {{height: '33%'}}>
+                <Box sx = {{paddingTop: '25px'}}>
+                  <Button variant="contained" color="primary" sx={{ padding: '15px'}} onClick={handleOpen}>
+                    Transfer Between Accounts
+                  </Button> 
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description">
+                    <Box sx = {{  position: 'absolute' as 'absolute',
+                                top: '50%',
+                                left: '50%',
+                                transform: 'translate(-50%, -50%)',
+                                width: 400,
+                                bgcolor: 'background.paper',
+                                border: '2px solid #000',
+                                boxShadow: 24,
+                                alignItems: 'center', justifyContent: 'space-between',
+                                p: 4,}}>
+                      <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Add Funds
+                      </Typography>
+                      <TextField
+                        type="number"
+                        label="Input Field"
+                        value={inputValue}
+                        onChange={handleInputChange}
+                      />
+                      <Button variant="contained" color="primary" sx={{ padding: '5px'}} onClick={handleChequing}>Chequings</Button>
+                      <Button variant="contained" color="primary" sx={{ padding: '5px'}} onClick={handleSaving}>Savings</Button>
+                    </Box>
+                  </Modal>
                 </Box>
-              </Modal>
-              </Box>
-            </Grid>
-
+              </Grid>
             </Grid>
           </Grid>
           <Box sx = {{
@@ -165,7 +164,9 @@ export default function Main() {
             padding: '15px',
             fontSize: '25'
           }}>
-            Budget info
+            <Button onClick={() => router.push("/bankPages/budgets")}>
+              Budget info
+            </Button>
           </Box>
         </Box>
       </main>
