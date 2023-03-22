@@ -97,13 +97,22 @@ const NavBar: NextPage = () => {
                 </Box>
               )}
               {user && user.username && (
-                <MenuItem key={"logout"}>
-                  <Button onClick={() => userContext.logout()}>
-                    <Typography color="black" textAlign="center">
-                      Logout
-                    </Typography>
+                <Box>
+                  <Button onClick={() => router.push("/main")}>
+                    <MenuItem key={"main"}>
+                      <Typography color="black" textAlign="center">
+                        Main
+                      </Typography>
+                    </MenuItem>
                   </Button>
-                </MenuItem>
+                  <Button onClick={() => userContext.logout()}>
+                    <MenuItem key={"logout"}>
+                      <Typography color="black" textAlign="center">
+                        Logout
+                      </Typography>
+                    </MenuItem>
+                  </Button>
+                </Box>
               )}
             </Menu>
           </Box>
