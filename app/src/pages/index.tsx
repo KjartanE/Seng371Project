@@ -10,8 +10,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/piggy-bank.ico" />
       </Head>
-      <main className={styles.main}>
+      <main>
         <div className={styles.description}>{"Home Page <3"}</div>
+        TODO: Add a good looking Landing page
       </main>
     </>
   )

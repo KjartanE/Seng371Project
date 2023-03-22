@@ -12,6 +12,8 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
       - 3306:3306
+    networks:
+      - seng-network
     volumes:
       - db_data:/var/lib/mysql
       - ./database/setup.sql:/docker-entrypoint-initdb.d/setup.sql
@@ -28,6 +30,12 @@ services:
     volumes:
       - ./app:/usr/src/app
       - /usr/src/app/node_modules
+    networks:
+      - seng-network
+
+networks:
+  seng-network:
+    driver: bridge
 
 volumes:
     db_data:

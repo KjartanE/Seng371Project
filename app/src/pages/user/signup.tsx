@@ -1,7 +1,9 @@
 import { Formik } from "formik"
 import * as Yup from "yup"
-import { Box, Button, Grid, Paper, TextField } from "@mui/material"
+import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material"
 import { useAuth } from "../../context/UserContext"
+import { Container } from "@mui/system"
+import { theme } from "@/styles/appTheme"
 
 export const signupSchema = Yup.object().shape({
   username: Yup.string().required("Required"),
@@ -29,7 +31,7 @@ const SignupForm = () => {
   }
 
   return (
-    <Box>
+    <Container maxWidth={"xl"}>
       <Formik
         validationSchema={signupSchema}
         initialValues={{
@@ -51,14 +53,25 @@ const SignupForm = () => {
           handleSubmit,
         }: any) => (
           <Box>
-            <Paper>
-              <Box m={4} pt={4}>
-                <h1>SIGNUP</h1>
+             <Paper elevation={3}>
+              <Box
+                px={2}
+                sx={{
+                  backgroundColor: theme.palette.primary.main,
+                  height: "10vh",
+                }}
+              >
+                <Typography fontSize={100} color="white" textAlign="left">
+                  <strong>Sign up</strong>
+                </Typography>
               </Box>
-              <Box m={2} px={4} pb={4}>
+            </Paper>
+            <Paper elevation={2}>
+              <Box mx={8} p={4}>
                 <Grid container direction={"column"} spacing={2}>
                   <Grid item>
                     <TextField
+                      fullWidth
                       type="username"
                       name="username"
                       label="Username:"
@@ -73,6 +86,7 @@ const SignupForm = () => {
                   </Grid>
                   <Grid item>
                     <TextField
+                      fullWidth
                       type="email"
                       name="email"
                       label="Email:"
@@ -88,6 +102,7 @@ const SignupForm = () => {
                   </Grid>
                   <Grid item>
                     <TextField
+                      fullWidth
                       type="password"
                       name="password1"
                       label="Password:"
@@ -106,6 +121,7 @@ const SignupForm = () => {
                   </Grid>
                   <Grid item>
                     <TextField
+                      fullWidth
                       type="password"
                       name="password2"
                       label="Password:"
@@ -138,7 +154,7 @@ const SignupForm = () => {
           </Box>
         )}
       </Formik>
-    </Box>
+    </Container>
   )
 }
 

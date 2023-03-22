@@ -2,7 +2,7 @@ import { AuthProvider } from "@/context/UserContext"
 import "@/styles/globals.css"
 import { ThemeProvider } from "@mui/system"
 import type { AppProps } from "next/app"
-import Layout from "./layout/layout"
+import Layout from "../layout/appLayout"
 import { theme } from "@/styles/appTheme"
 import { AccProvider } from "@/context/AccountContext"
 

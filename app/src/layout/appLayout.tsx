@@ -1,5 +1,5 @@
-import Footer from "../../components/footer"
-import Navbar from "../../components/navbar"
+import Footer from "../components/footer"
+import Navbar from "../components/navbar"
 import styles from "../../styles/Home.module.css"
 import { Box, Container, Grid } from "@mui/material"
 
@@ -16,7 +16,7 @@ export default function Layout({ children }: any) {
         <Navbar />
       </Box>
       <Box sx={{ display: "flex", flex: 1 }}>
-        <Container maxWidth={"xl"}>
+      <Container maxWidth={"xl"}>
           <Box
             sx={{
               display: "flex",

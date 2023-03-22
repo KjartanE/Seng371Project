@@ -62,6 +62,7 @@ const findEmail = async (email: string) => {
     const result = await excuteQuery("SELECT * FROM login WHERE email = ?;", [
       email,
     ])
+    console.log("result", result)
     if (result) {
       return result
     }

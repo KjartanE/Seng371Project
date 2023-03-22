@@ -12,11 +12,7 @@ export default function Main() {
   const router = useRouter()
 
   const user = userContext.currentUser()
-  // console.log('userContext', userContext);
-  // console.log('userContext.currentUser()', userContext.currentUser());
-
   const account = accountContext.currentAccount()
-  // console.log('account', account);
 
   return (
     <>

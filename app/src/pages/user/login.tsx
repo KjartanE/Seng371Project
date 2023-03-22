@@ -1,10 +1,20 @@
 import { Formik } from "formik"
 import * as Yup from "yup"
-import { Alert, Box, Button, Paper, Snackbar, TextField } from "@mui/material"
+import {
+  Alert,
+  Box,
+  Button,
+  Paper,
+  Snackbar,
+  TextField,
+  Typography,
+} from "@mui/material"
 import styles from "../../styles/Home.module.css"
 import { useRouter } from "next/router"
 import { useAuth } from "../../context/UserContext"
 import { useState } from "react"
+import { Container } from "@mui/system"
+import { theme } from "@/styles/appTheme"
 
 export const loginSchema = Yup.object().shape({
   username: Yup.string().required("Required"),
@@ -36,7 +46,7 @@ const LoginForm = () => {
   }
 
   return (
-    <>
+    <Container maxWidth={"xl"}>
       <Snackbar
         open={snackbar}
         autoHideDuration={6000}
@@ -65,11 +75,25 @@ const LoginForm = () => {
           handleBlur,
           handleSubmit,
         }: any) => (
-          <Box className={styles.login}>
-            <Paper>
-              <Box m={4} p={4}>
+          <Box>
+            <Paper elevation={3}>
+              <Box
+                px={2}
+                sx={{
+                  backgroundColor: theme.palette.primary.main,
+                  height: "10vh",
+                }}
+              >
+                <Typography fontSize={100} color="white" textAlign="left">
+                  <strong>Sign in</strong>
+                </Typography>
+              </Box>
+            </Paper>
+            <Paper  elevation={2}>
+              <Box mx={8} p={4}>
                 <Box m={2}>
                   <TextField
+                    fullWidth
                     type="username"
                     name="username"
                     label="Username"
@@ -81,12 +105,12 @@ const LoginForm = () => {
                       errors.username && touched.username && errors.username
                     }
                     placeholder="Enter username id / username"
-                    className="form-control inp_text"
                     id="username"
                   />
                 </Box>
                 <Box m={2}>
                   <TextField
+                    fullWidth
                     type="password"
                     name="password"
                     label="Password"
@@ -116,7 +140,7 @@ const LoginForm = () => {
           </Box>
         )}
       </Formik>
-    </>
+    </Container>
   )
 }
 

@@ -66,9 +66,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
    */
   useEffect(() => {
     const storageUser = localStorage.getItem("user")
+    console.log("storageUser", storageUser)
 
     if (storageUser) {
       const loadedUser: userData = JSON.parse(storageUser)
+      console.log("loadedUser", loadedUser)
 
       if (loadedUser && loadedUser != undefined) {
         setUser(loadedUser)
@@ -128,10 +130,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       email: signupDetails.email,
       password: signupDetails.password1,
     })
+    console.log("JSONdata", JSONdata)
 
     const response = await fetchWrapper.post(`${baseUrl}/signup`, {
       JSONdata,
     })
+    console.log("response", response)
 
     if (response) {
       router.push("/user/login")
