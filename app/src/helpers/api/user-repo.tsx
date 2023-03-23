@@ -97,9 +97,9 @@ async function create(user: any) {
 
     const accountResult = await excuteQuery(
       `
-      INSERT INTO accounts(user_id,checking, savings, credit,credit_limit) VALUES(?,?,?,?,?);
+      INSERT INTO accounts(user_id,checking, savings, credit,credit_limit, budget) VALUES(?,?,?,?,?,?);
       `,
-      [userResult.insertId, 100, 100, 100, 1000]
+      [userResult.insertId, 100, 100, 100, 1000, 0]
     )
     // console.log("accountResult", accountResult)
 

@@ -1,12 +1,15 @@
 import Head from "next/head"
 import styles from "@/styles/Home.module.css"
 import { useAuth } from "../../context/UserContext"
+import { useAcc } from "@/context/AccountContext"
 import { Button } from '@mui/material';
 import { useRouter } from "next/router"
 
 export default function Main() {
   const userContext = useAuth()
   const router = useRouter()
+  const accountContext = useAcc()
+  const account = accountContext.currentAccount()
 
   const user = userContext.currentUser()
   // console.log('userContext', userContext);
