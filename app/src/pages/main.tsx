@@ -7,6 +7,7 @@ import { Box, Container, height } from "@mui/system"
 import { theme } from "@/styles/appTheme"
 import { alpha } from "@mui/material"
 import Accounts from "@/components/main/accounts"
+import getTips from "@/helpers/tips"
 
 export default function Main() {
   const userContext = useAuth()
@@ -16,47 +17,9 @@ export default function Main() {
 
   const user = userContext.currentUser()
   const account = accountContext.currentAccount()
+  const total = Number(account?.savings) + Number(account?.checking)
+ 
 
-  const accountComponent = (value: number, title: string) => {
-    return (
-      <Paper elevation={1}>
-        <Box
-          m={2}
-          sx={{
-            flexGrow: 0,
-            display: { xs: "none", md: "flex" },
-          }}
-        >
-          <Box
-            p={4}
-            sx={{
-              flexGrow: 1,
-              height: "100%",
-            }}
-          >
-            <Typography fontSize={40} color={"black"} textAlign="left">
-              {title}
-            </Typography>
-          </Box>
-          <Box
-            p={4}
-            sx={{
-              flexGrow: 0,
-              height: "100%",
-            }}
-          >
-            <Typography
-              fontSize={40}
-              color={theme.palette.primary.main}
-              textAlign="left"
-            >
-              ${value}
-            </Typography>
-          </Box>
-        </Box>
-      </Paper>
-    )
-  }
 
   return (
     <>
@@ -124,7 +87,7 @@ export default function Main() {
                       height: "100%",
                     }}
                   >
-                    Current Budget: {account?.budget}
+                    {getTips(total)}
                   </Box>
                 </Paper>
               </Box>
