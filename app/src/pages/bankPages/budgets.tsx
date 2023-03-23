@@ -5,6 +5,7 @@ import { useAcc } from "@/context/AccountContext"
 import { Button, Box, Grid, Typography } from '@mui/material';
 import { useRouter } from "next/router"
 import { useState } from "react";
+import Accounts from "@/components/main/budgets"
 
 export default function Main() {
   const userContext = useAuth()
@@ -18,7 +19,19 @@ export default function Main() {
 
   const budgetDisplay = (budget) => {
     if(budget > 0){
+        return(
+        <Box sx={{
+          height:"100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+          alignItems: "center"
+        }}>
+          <Typography color="#000000" fontSize="100">You have {budget} left in your budget.  Happy Savings :)</Typography>
+          <Button variant="contained">Add Budget</Button>
+        </Box>    
 
+        )
     }else{
       return(
         <Box sx={{
@@ -28,8 +41,16 @@ export default function Main() {
           justifyContent: "space-evenly",
           alignItems: "center"
         }}>
-          <Typography color="#000000" fontSize="50">You have no budget plan, please add one below</Typography>
-          <Button variant="contained">Add Budget</Button>
+           <Grid
+            container
+            spacing={2}
+            direction="column"
+            sx={{ justifyContent: "flex-start", width: "60%", height: 1 }}
+          >
+            <Grid item xs={4} sx={{ height: "33%" }}>
+              <Accounts />
+            </Grid>
+          </Grid>
         </Box>
       )
     }
@@ -66,7 +87,7 @@ export default function Main() {
               </Grid>
               <Grid item xs={12}>
                 <div className={styles.description}>
-                  Welcome {user?.username || ""}, here are your account balances
+                  Welcome {user?.username || ""}, here are your budgets
                 </div>
               </Grid>
             </Grid>
