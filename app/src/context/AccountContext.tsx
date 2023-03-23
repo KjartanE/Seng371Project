@@ -118,12 +118,26 @@ export function AccProvider({ children }: { children: ReactNode }) {
 
     return currentAccount
   }
+  const addBudget = async (
+    amount: number,
+    accountUpdate: string
+  ): Promise<any | undefined> => {
+    console.log("accountUpdate", accountUpdate)
+    const currentAccount = await fetchWrapper.post(`${baseUrl}/updateBudget`, {
+      accountId: account?.account_id,
+      column: accountUpdate,
+      value: amount,
+    })
+
+    return currentAccount
+  }
   const value = {
     account,
     getAccount,
     currentAccount,
     addFunds,
-    subtractFunds
+    subtractFunds,
+    addBudget,
   }
 
   return (
