@@ -4,7 +4,7 @@ import { theme } from "@/styles/appTheme"
 import { useAcc } from "@/context/AccountContext"
 import { useRouter } from "next/router"
 import React from "react"
-import AddFunds from "./AddFunds"
+import AddFunds from "./SubtractFunds"
 
 export const accountComponent = (value: number, title: string) => {
   return (
@@ -70,18 +70,13 @@ export default function Accounts() {
       </Modal>
       <Paper elevation={1}>
         <Box p={4}>
-          <Button onClick={() => router.push("/bankPages/accounts")}>
-            <Typography fontSize={20} color={"black"} textAlign="left">
-              Bank accounts
-            </Typography>
-          </Button>
           <Button
             variant="contained"
             color="primary"
             sx={{ padding: "15px" }}
             onClick={handleOpen}
           >
-            Transfer Between Accounts
+            Make Payment
           </Button>
           {accountComponent(account?.checking || 0.0, "Chequing")}
           {accountComponent(account?.savings || 0.0, "Savings")}

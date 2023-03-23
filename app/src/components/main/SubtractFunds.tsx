@@ -17,7 +17,7 @@ export default function AddFunds(props: { handleClose: () => void }) {
     amount: number
     account: string
   }) => {
-    accountContext.addFunds(values.amount, values.account)
+    accountContext.subtractFunds(values.amount, values.account)
   }
 
   return (
@@ -38,7 +38,7 @@ export default function AddFunds(props: { handleClose: () => void }) {
         }}
       >
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          Add Funds
+          Make Payment
         </Typography>
         <>
           <Formik
@@ -91,7 +91,7 @@ export default function AddFunds(props: { handleClose: () => void }) {
                     sx={{ padding: "5px" }}
                     onClick={handleSubmit}
                   >
-                    Update Funds
+                    Send Funds
                   </Button>
                 </Box>
               </Box>
