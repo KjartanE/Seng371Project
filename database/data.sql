@@ -85,3 +85,24 @@ CREATE TABLE `payments` (
 insert  into `payments`(`account_id`,`check_number`,`payment_date`,`amount`) values 
 
 (1,'HQ336336','2004-10-19','6066.78');
+
+/*Table structure for table `transactions` */
+
+DROP TABLE IF EXISTS `transactions`;
+
+CREATE TABLE `transactions` (
+  `account_id` int(11) NOT NULL,
+  `transaction_amount` decimal(10,2) NOT NULL,
+  `transaction_date` date NOT NULL,
+  `account_total` decimal(10,2) NOT NULL,
+  `transaction_description` varchar(50) NOT NULL,
+
+  PRIMARY KEY (`account_id`),
+  CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `transactions` */
+
+insert  into `transactions`(`account_id`,`transaction_amount`,`transaction_date`,`account_total`, `transaction_description`) values 
+
+(1,'-66','2004-10-19','6066.78','Save-on-Foods');

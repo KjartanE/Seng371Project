@@ -15,12 +15,17 @@ export type accContextType = {
   account: IAccount | null
   getAccount: (accountId: number) => Promise<IAccount | undefined> | null
   currentAccount: () => IAccount | undefined
+  addFunds: (
+    value: number,
+    updateAccount: string
+  ) => Promise<any | undefined> | null
 }
 
 const accContextDefaultValues: accContextType = {
   account: null,
   getAccount: (x: any) => null,
   currentAccount: () => undefined,
+  addFunds: (value: number, updateAccount: string) => null,
 }
 
 const AccContext = createContext<accContextType>(accContextDefaultValues)
@@ -40,10 +45,10 @@ export function AccProvider({ children }: { children: ReactNode }) {
       }
       return loadedAccount
     }
-
     const storageUser = localStorage.getItem("user")
-    if (storageUser !== 'null') {
-      if(storageUser){
+
+    if (storageUser !== "null") {
+      if (storageUser) {
         getAcc(JSON.parse(storageUser).login_id).catch(() => {
           console.log("Error loading account")
         })
@@ -87,11 +92,38 @@ export function AccProvider({ children }: { children: ReactNode }) {
       return account
     }
   }
+  const addFunds = async (
+    amount: number,
+    accountUpdate: string
+  ): Promise<any | undefined> => {
+    console.log("accountUpdate", accountUpdate)
+    const currentAccount = await fetchWrapper.post(`${baseUrl}/update`, {
+      accountId: account?.account_id,
+      column: accountUpdate,
+      value: amount,
+    })
 
+    return currentAccount
+  }
+  const subtractFunds = async (
+    amount: number,
+    accountUpdate: string
+  ): Promise<any | undefined> => {
+    console.log("accountUpdate", accountUpdate)
+    const currentAccount = await fetchWrapper.post(`${baseUrl}/update`, {
+      accountId: account?.account_id,
+      column: accountUpdate,
+      value: -amount,
+    })
+
+    return currentAccount
+  }
   const value = {
     account,
     getAccount,
     currentAccount,
+    addFunds,
+    subtractFunds
   }
 
   return (

@@ -5,6 +5,7 @@ import { Box, Container, Grid } from "@mui/material"
 
 export default function Layout({ children }: any) {
   return (
+    
     <Box
       minHeight="100vh"
       display="flex"
