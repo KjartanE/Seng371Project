@@ -27,7 +27,7 @@ export default function Main() {
           justifyContent: "space-evenly",
           alignItems: "center"
         }}>
-          <Typography color="#000000" fontSize="50">You have {budget} left in your budget.  Happy Savings :)</Typography>
+          <Typography color="#000000" fontSize="100">You have {budget} left in your budget.  Happy Savings :)</Typography>
           <Button variant="contained">Add Budget</Button>
         </Box>    
 
