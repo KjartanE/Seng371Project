@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import { Box, Container, height } from "@mui/system"
 import { theme } from "@/styles/appTheme"
 import { alpha } from "@mui/material"
+import Accounts from "@/components/main/accounts"
 
 export default function Main() {
   const userContext = useAuth()
@@ -105,23 +106,7 @@ export default function Main() {
                   height: "100%",
                 }}
               >
-                <Paper elevation={1}>
-                  <Box p={4}>
-                    <Button onClick={() => router.push("/bankPages/accounts")}>
-                      <Typography
-                        fontSize={20}
-                        color={"black"}
-                        textAlign="left"
-                      >
-                        Bank accounts
-                      </Typography>
-                    </Button>
-                    {account?.checking &&
-                      accountComponent(account?.checking, "Chequing")}
-                    {account?.savings &&
-                      accountComponent(account?.checking, "Savings")}
-                  </Box>
-                </Paper>
+                <Accounts />
               </Box>
 
               <Box

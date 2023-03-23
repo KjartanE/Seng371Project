@@ -105,6 +105,20 @@ const NavBar: NextPage = () => {
                       </Typography>
                     </MenuItem>
                   </Button>
+                  <Button onClick={() => router.push("/bankPages/accounts")}>
+                    <MenuItem key={"accounts"}>
+                      <Typography color="black" textAlign="center">
+                        Accounts
+                      </Typography>
+                    </MenuItem>
+                  </Button>
+                  <Button onClick={() => router.push("/bankPages/budgets")}>
+                    <MenuItem key={"budget"}>
+                      <Typography color="black" textAlign="center">
+                        Budget
+                      </Typography>
+                    </MenuItem>
+                  </Button>
                   <Button onClick={() => userContext.logout()}>
                     <MenuItem key={"logout"}>
                       <Typography color="black" textAlign="center">

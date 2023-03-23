@@ -38,7 +38,7 @@ const LoginForm = () => {
       )
 
       if (user) {
-        router.push("/")
+        router.push("/main")
       }
     } catch (error) {
       setSnackbar(true)
