@@ -4,7 +4,7 @@ import { theme } from "@/styles/appTheme"
 import { useAcc } from "@/context/AccountContext"
 import { useRouter } from "next/router"
 import React from "react"
-import AddFunds from "./SubtractFunds"
+import SubtractFunds from "./SubtractFunds"
 
 export const accountComponent = (value: number, title: string) => {
   return (
@@ -66,7 +66,7 @@ export default function Accounts() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <AddFunds handleClose={handleClose} />
+        <SubtractFunds handleClose={handleClose} />
       </Modal>
       <Paper elevation={1}>
         <Box p={4}>
