@@ -1,12 +1,22 @@
 import Head from "next/head"
 import styles from "@/styles/Home.module.css"
 import { useAuth } from "../../context/UserContext"
-import { Button, Box, Grid } from "@mui/material"
+import { Button, Box, Grid, Paper } from "@mui/material"
 import { useRouter } from "next/router"
 import { color } from "@mui/system"
 import { useState } from "react"
 import React from "react"
 import Accounts from "@/components/main/payments"
+import { styled } from '@mui/material/styles';
+
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 export default function Main() {
   const userContext = useAuth()
@@ -79,8 +89,8 @@ export default function Main() {
               color: "#000000",
               borderRadius: 2,
               width: "35%",
-              height: "80%",
-              padding: "15px",
+              height: "90%",
+              padding: "10px",
               fontSize: "25",
               display: "flex",
               flexDirection: "column",
@@ -89,14 +99,34 @@ export default function Main() {
               textAlign: "left",
             }}
           >
-            <div style={{ fontSize: "25px" }}>
-              <p>VISA - $100.00</p>
-              <p>MasterCard - $50.00</p>
-              <p>Telus - $75.00</p>
-              <p>BC Hydro - $200.00</p>
-              <p>UVIC - $25.00</p>
-              <p>Lamborghini - $1,500,000.00</p>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Grid item xs={6}>
+          <Item>
+          <p style={{ fontSize: "25px", textAlign:"center" }}>Payee</p>
+          <div style={{ fontSize: "18px" }}>
+              <p>VISA</p>
+              <p>MasterCard</p>
+              <p>Telus</p>
+              <p>BC Hydro</p>
+              <p>UVIC</p>
+              <p>Lamborghini</p>
             </div>
+          </Item>
+        </Grid>
+        <Grid item xs={6}>
+          <Item>
+          <p style={{ fontSize: "25px", textAlign:"center" }}>Payment Due</p>
+          <div style={{ fontSize: "18px" }}>
+              <p>$100.00</p>
+              <p>$50.00</p>
+              <p>$75.00</p>
+              <p>$200.00</p>
+              <p>$25.00</p>
+              <p>$1,500,000.00</p>
+            </div>
+          </Item>
+        </Grid>
+      </Grid>
             <p style={{ fontSize: "14px" }}>**Please note that it may take up to 3 business days for the payable amount to be updated.</p>
           </Box>
         </Box>
