@@ -73,6 +73,32 @@ export default function Main() {
               <Accounts />
             </Grid>
           </Grid>
+          <Box
+            sx={{
+              bgcolor: "#ffffff",
+              color: "#000000",
+              borderRadius: 2,
+              width: "35%",
+              height: "80%",
+              padding: "15px",
+              fontSize: "25",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              justifyContent: "flex-start",
+              textAlign: "left",
+            }}
+          >
+            <div style={{ fontSize: "25px" }}>
+              <p>VISA - $100.00</p>
+              <p>MasterCard - $50.00</p>
+              <p>Telus - $75.00</p>
+              <p>BC Hydro - $200.00</p>
+              <p>UVIC - $25.00</p>
+              <p>Lamborghini - $1,500,000.00</p>
+            </div>
+            <p style={{ fontSize: "14px" }}>**Please note that it may take up to 3 business days for the payable amount to be updated.</p>
+          </Box>
         </Box>
       </main>
     </>

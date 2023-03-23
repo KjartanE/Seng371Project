@@ -1,4 +1,4 @@
-import { Button, Select, TextField, Typography, MenuItem } from "@mui/material"
+import { Button, Select, TextField, Typography, MenuItem, FormControl, InputLabel } from "@mui/material"
 import { Box } from "@mui/system"
 import React from "react"
 import { Formik } from "formik"
@@ -10,7 +10,7 @@ export const transactionSchema = Yup.object().shape({
   account: Yup.string().required("Required"),
 })
 
-export default function AddFunds(props: { handleClose: () => void }) {
+export default function SubtractFunds(props: { handleClose: () => void }) {
   const accountContext = useAcc()
 
   const sendTransaction = async (values: {
@@ -56,9 +56,17 @@ export default function AddFunds(props: { handleClose: () => void }) {
                   sx={{
                     flexGrow: 0,
                     display: { xs: "none", md: "flex" },
+                    width:300,
                   }}
                 >
-                  <Select onChange={handleChange} name="account">
+                  <InputLabel id="accounts-label">Accounts</InputLabel>
+                  <Select
+                    labelId="accounts-label"
+                    onChange={handleChange}
+                    name="account"
+                    label="Accounts"
+                    variant="outlined"
+                    >
                     <MenuItem value="checking">Chequings</MenuItem>
                     <MenuItem value="savings">Savings</MenuItem>
                   </Select>
@@ -70,12 +78,20 @@ export default function AddFunds(props: { handleClose: () => void }) {
                     display: { xs: "none", md: "flex" },
                   }}
                 >
+                  <FormControl>
+                  <TextField
+                    onChange={handleChange}
+                    type="string"
+                    label="Payee Account number"
+                    name="amount"
+                  />
                   <TextField
                     onChange={handleChange}
                     type="number"
-                    label="Input Field"
+                    label="Amount Payable"
                     name="amount"
                   />
+                  </FormControl>
                 </Box>
 
                 <Box
