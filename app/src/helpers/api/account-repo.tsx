@@ -7,6 +7,7 @@ export interface IAccount {
   savings: number
   credit: number
   credit_limit: number
+  budget: number
 }
 export const accountRepo = {
   getRecord: (x: any) => getRecordByLoginId(x),
@@ -16,6 +17,8 @@ export const accountRepo = {
     updatSavingsAccount(aID, val),
   updateCreditAccount: (aID: number, val: number) =>
     updateCreditAccount(aID, val),
+  updateBudget: (aID: number, val: number) =>
+    updateBudget(aID, val),
 }
 
 const getRecordByLoginId = async (
@@ -88,6 +91,27 @@ const updateCreditAccount = async (
       `
       UPDATE accounts
       SET credit = '?'
+      WHERE account_id = ?;
+      `,
+      [value, accountId]
+    )
+    if (result) {
+      return result
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const updateBudget = async (
+  accountId: number,
+  value: number
+): Promise<IAccount | undefined> => {
+  try {
+    const result = await excuteQuery(
+      `
+      UPDATE accounts
+      SET budget = '?'
       WHERE account_id = ?;
       `,
       [value, accountId]

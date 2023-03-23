@@ -22,5 +22,6 @@ export default async function handler(
     savings: account.savings,
     credit: account.credit,
     credit_limit: account.credit_limit,
+    budget: account.budget
   })
 }

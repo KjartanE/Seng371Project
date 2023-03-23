@@ -2,19 +2,38 @@ import Head from "next/head"
 import styles from "@/styles/Home.module.css"
 import { useAuth } from "../../context/UserContext"
 import { useAcc } from "@/context/AccountContext"
-import { Button } from '@mui/material';
+import { Button, Box, Grid, Typography } from '@mui/material';
 import { useRouter } from "next/router"
+import { useState } from "react";
 
 export default function Main() {
   const userContext = useAuth()
   const router = useRouter()
   const accountContext = useAcc()
   const account = accountContext.currentAccount()
-
+  const [budget, setBudget] = useState(account?.budget)
   const user = userContext.currentUser()
   // console.log('userContext', userContext);
   // console.log('userContext.currentUser()', userContext.currentUser());
 
+  const budgetDisplay = (budget) => {
+    if(budget > 0){
+
+    }else{
+      return(
+        <Box sx={{
+          height:"100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+          alignItems: "center"
+        }}>
+          <Typography color="#000000" fontSize="50">You have no budget plan, please add one below</Typography>
+          <Button variant="contained">Add Budget</Button>
+        </Box>
+      )
+    }
+  }
 
   return (
     <>
@@ -25,12 +44,43 @@ export default function Main() {
         <link rel="icon" href="/piggy-bank.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.backButton}>
-          <Button variant="contained" onClick={() => {
-            router.push("/main")
-          }}>Back</Button>
-        </div>
-        <div className={styles.description}>{user?.username || ""}, here are your budget plans</div>
+        <Box
+            sx={{
+              backgroundColor: "primary.main",
+              width: 1,
+              height: "40%",
+              position: "top",
+            }}
+          >
+            <Grid container spacing={2} sx={{ paddingTop: "35px" }}>
+              <Grid item xs={2}>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => {
+                    router.push("/main")
+                  }}
+                >
+                  Back
+                </Button>
+              </Grid>
+              <Grid item xs={12}>
+                <div className={styles.description}>
+                  Welcome {user?.username || ""}, here are your account balances
+                </div>
+              </Grid>
+            </Grid>
+          </Box>
+          <Box
+            sx={{
+              backgroundColor: "#FFFFFF",
+              width: 1,
+              height: "60%",
+              position: "top",
+            }}
+          >
+            {budgetDisplay(budget)}
+          </Box>
       </main>
     </>
   )
