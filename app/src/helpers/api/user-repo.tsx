@@ -99,7 +99,7 @@ async function create(user: any) {
       `
       INSERT INTO accounts(user_id,checking, savings, credit,credit_limit, budget) VALUES(?,?,?,?,?,?);
       `,
-      [userResult.insertId, 100, 100, 100, 1000, 0]
+      [userResult.insertId, 100, 100, 100, 1000, 2000]
     )
     // console.log("accountResult", accountResult)
 

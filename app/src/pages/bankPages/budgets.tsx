@@ -18,7 +18,19 @@ export default function Main() {
 
   const budgetDisplay = (budget) => {
     if(budget > 0){
+        return(
+        <Box sx={{
+          height:"100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+          alignItems: "center"
+        }}>
+          <Typography color="#000000" fontSize="50">You have {budget} left in your budget.  Happy Savings :)</Typography>
+          <Button variant="contained">Add Budget</Button>
+        </Box>    
 
+        )
     }else{
       return(
         <Box sx={{

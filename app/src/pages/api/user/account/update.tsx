@@ -26,7 +26,10 @@ export default async function handler(
     updatedAmount = Number(account.credit) + Number(value)
     await accountRepo.updateCreditAccount(accountId, updatedAmount)
   }
-
+  if(Number(value) < 0){
+    updatedAmount = Number(account.budget) + Number(value)
+    await accountRepo.updateBudget(accountId, updatedAmount)
+  }
   // return updated account info
   return res.status(200).json({
     user_id: account.user_id,
@@ -35,5 +38,6 @@ export default async function handler(
     savings: account.savings,
     credit: account.credit,
     credit_limit: account.credit_limit,
+    budget: account.budget,
   })
 }
