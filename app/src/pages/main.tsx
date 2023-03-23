@@ -124,15 +124,7 @@ export default function Main() {
                       height: "100%",
                     }}
                   >
-                    <Button onClick={() => router.push("/bankPages/budgets")}>
-                      <Typography
-                        fontSize={20}
-                        color={"black"}
-                        textAlign="left"
-                      >
-                        Budget
-                      </Typography>
-                    </Button>
+                    Current Budget: {account?.budget}
                   </Box>
                 </Paper>
               </Box>
