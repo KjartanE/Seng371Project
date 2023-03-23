@@ -18,6 +18,7 @@ export default function SubtractFunds(props: { handleClose: () => void }) {
     account: string
   }) => {
     accountContext.subtractFunds(values.amount, values.account)
+    location.reload()
   }
 
   return (

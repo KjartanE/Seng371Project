@@ -18,6 +18,7 @@ export default function AddFunds(props: { handleClose: () => void }) {
     account: string
   }) => {
     accountContext.addBudget(values.amount, "budget")
+    location.reload()
   }
 
   return (
