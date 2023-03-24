@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Accounts from "@/components/main/investment"
 import Invest from "@/components/main/investment";
+import { theme } from "@/styles/appTheme"
 
 
 export default function Main() {
@@ -27,7 +28,11 @@ export default function Main() {
           justifyContent: "space-evenly",
           alignItems: "center"
         }}>
-          <Typography color="#000000" fontSize="50">Your budget: {budget}</Typography>
+          <Typography color='#ca6eb0' variant="h3">
+            <strong>
+              Your budget: {budget}
+            </strong>
+          </Typography>
         </Box>
       );
     } else {

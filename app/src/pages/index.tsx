@@ -39,7 +39,7 @@ export default function Home() {
             <Button variant='contained' sx={{
             height: '50%', 
             width: '10rem'
-            }} onClick={() => router.push("/bankPages/budgets")}>Investments</Button>
+            }} onClick={() => router.push("/bankPages/investments")}>Investments</Button>
         </Box>
       )
     }else{
@@ -59,7 +59,7 @@ export default function Home() {
           <Button variant='contained' sx={{
             height: '50%', 
             width: '10rem'
-            }} onClick={() => router.push("/user/signup")}>Singup</Button>
+            }} onClick={() => router.push("/user/signup")}>Signup</Button>
         </Box>
       )
     }

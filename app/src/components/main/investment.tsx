@@ -70,8 +70,13 @@ export default function Invest() {
       >
         <AddFunds handleClose={handleClose} />
       </Modal>
-      <Paper elevation={1}>
-        <Box p={4}>
+        <Box p={4} sx={{
+          width: 1, 
+          backgroundColor: 'white',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-evenly'
+          }}>
           <Button
           
             variant="contained"
@@ -105,7 +110,6 @@ export default function Invest() {
           >Mutual Funds
           </Button>
         </Box>
-      </Paper>
     </>
   )
 }

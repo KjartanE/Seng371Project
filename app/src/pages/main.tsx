@@ -18,8 +18,58 @@ export default function Main() {
   const user = userContext.currentUser()
   const account = accountContext.currentAccount()
   const total = Number(account?.savings) + Number(account?.checking)
- 
 
+  const adaptiveDisplay = (total) => {
+    if(total > 10000){
+      return(
+        <Box p={4} sx={{
+          width: 1, 
+          height: '100%',
+          backgroundColor: 'white',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-evenly'
+          }}>
+          <Button
+          
+            variant="contained"
+            color="primary"
+            sx={{ padding: "15px", width: "150px", height:"75px"}}
+            onClick={() => router.push("/bankPages/investments")}
+          >Stocks
+          </Button>
+          <Button
+          
+            variant="contained"
+            color="primary"
+            sx={{ padding: "15px", width: "150px", height:"75px" }}
+            onClick={() => router.push("/bankPages/investments")}
+          >Bonds
+          </Button>
+          <Button
+          
+            variant="contained"
+            color="primary"
+            sx={{ padding: "15px", width: "150px", height:"75px" }}
+            onClick={() => router.push("/bankPages/investments")}
+          >Real Estate
+          </Button>
+          <Button
+          
+            variant="contained"
+            color="primary"
+            sx={{ padding: "15px", width: "150px", height:"75px" }}
+            onClick={() => router.push("/bankPages/investments")}
+          >Mutual Funds
+          </Button>
+        </Box>
+      )
+    }else{
+      return(
+        <Typography>In Progress</Typography>
+      )
+    }
+  }
 
   return (
     <>
@@ -89,6 +139,11 @@ export default function Main() {
                   >
                     {getTips(total)}
                     <LinearProgress variant = "determinate" value = {(Number(account?.budget) / 2000)*100}></LinearProgress>
+                  </Box>
+                </Paper>
+                <Paper elevation={1}>
+                  <Box sx={{marginTop: '25px', height: '37.5vh'}}>
+                    {adaptiveDisplay(total)}
                   </Box>
                 </Paper>
               </Box>
