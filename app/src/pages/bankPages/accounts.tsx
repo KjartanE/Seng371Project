@@ -1,14 +1,27 @@
 import Head from "next/head"
 import styles from "@/styles/Home.module.css"
 import { useAuth } from "../../context/UserContext"
-import { Button, Box, Grid, LinearProgress } from "@mui/material"
+import { Button, Box, Grid, LinearProgress, CircularProgress, Typography, linearProgressClasses } from "@mui/material"
 import { useRouter } from "next/router"
-import { color } from "@mui/system"
+import { color, styled } from "@mui/system"
 import { useState } from "react"
 import React from "react"
 import Accounts from "@/components/main/accounts"
 import getTips from "@/helpers/tips"
 import { useAcc } from "@/context/AccountContext"
+
+
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+  height: 10,
+  borderRadius: 5,
+  [`&.${linearProgressClasses.colorPrimary}`]: {
+    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+  },
+  [`& .${linearProgressClasses.bar}`]: {
+    borderRadius: 5,
+    backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
+  },
+}));
 
 export default function Main() {
   const userContext = useAuth()
@@ -98,12 +111,18 @@ export default function Main() {
             <Box
                     p={4}
                     sx={{
-                      flexGrow: 0,
+                      flexGrow: 5,
                       height: "100%",
                     }}
                   >
                     {getTips(total)}
-                    <LinearProgress variant = "determinate" value = {(Number(account?.budget) / 2000)*100}></LinearProgress>
+                    <Typography fontSize={20} color={"1a90ff"} textAlign="center" sx={{paddingTop:'25px'}}>
+                    You have {(Number(account?.budget) / 2000)*100}% (${(Number(account?.budget) )}) left in your budget for this month!
+                   </Typography>
+                    <BorderLinearProgress variant = "determinate" value = {(Number(account?.budget) / 2000)*100 }></BorderLinearProgress>
+                    <Typography fontSize={20} color={"1a90ff"} textAlign="center" sx={{paddingTop:'25px'}}>
+                    You have spent ${(2000 - Number(account?.budget) )} left in your budget for this month!
+                   </Typography>
                   </Box>
           </Box>
         </Box>

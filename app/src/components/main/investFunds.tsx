@@ -20,7 +20,7 @@ export const transactionSchema = Yup.object().shape({
     }) => {
       accountContext.subtractFunds(values.amount, values.account)
       router.push("/main")
-      // location.reload()
+      location.reload()
       
     }
 
