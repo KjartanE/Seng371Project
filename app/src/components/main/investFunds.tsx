@@ -2,6 +2,7 @@ import { Button, Select, TextField, Typography, MenuItem, FormControl, InputLabe
 import { Box } from "@mui/system"
 import React from "react"
 import { Formik } from "formik"
+import router, { useRouter } from "next/router"
 import { useAcc } from "@/context/AccountContext"
 import * as Yup from "yup"
 
@@ -18,6 +19,9 @@ export const transactionSchema = Yup.object().shape({
       account: string
     }) => {
       accountContext.subtractFunds(values.amount, values.account)
+      router.push("/main")
+      // location.reload()
+      
     }
 
   return (
