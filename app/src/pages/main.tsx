@@ -1,7 +1,7 @@
 import Head from "next/head"
 import { useAuth } from "../context/UserContext"
 import { useAcc } from "@/context/AccountContext"
-import { Button, Paper, Typography } from "@mui/material"
+import { Button, Paper, Typography, LinearProgress } from "@mui/material"
 import { useRouter } from "next/router"
 import { Box, Container, height } from "@mui/system"
 import { theme } from "@/styles/appTheme"
@@ -88,6 +88,7 @@ export default function Main() {
                     }}
                   >
                     {getTips(total)}
+                    <LinearProgress variant = "determinate" value = {(Number(account?.budget) / 2000)*100}></LinearProgress>
                   </Box>
                 </Paper>
               </Box>
