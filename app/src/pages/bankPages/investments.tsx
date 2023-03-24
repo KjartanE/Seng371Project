@@ -15,7 +15,7 @@ export default function Main() {
   const router = useRouter();
   const accountContext = useAcc();
   const account = accountContext.currentAccount();
-  const [budget, setBudget] = useState(account?.budget);
+  const budget = account?.budget
   const user = userContext.currentUser();
 
   const budgetDisplay = (budget: number | undefined) => {

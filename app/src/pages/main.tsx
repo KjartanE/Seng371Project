@@ -1,13 +1,26 @@
 import Head from "next/head"
 import { useAuth } from "../context/UserContext"
 import { useAcc } from "@/context/AccountContext"
-import { Button, Paper, Typography, LinearProgress } from "@mui/material"
+import { Button, Paper, Typography, LinearProgress, linearProgressClasses } from "@mui/material"
 import { useRouter } from "next/router"
-import { Box, Container, height } from "@mui/system"
+import { Box, Container, height, styled } from "@mui/system"
 import { theme } from "@/styles/appTheme"
 import { alpha } from "@mui/material"
 import Accounts from "@/components/main/accounts"
 import getTips from "@/helpers/tips"
+
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+  height: 10,
+  borderRadius: 5,
+  marginTop: '15px',
+  [`&.${linearProgressClasses.colorPrimary}`]: {
+    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+  },
+  [`& .${linearProgressClasses.bar}`]: {
+    borderRadius: 5,
+    backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
+  },
+}));
 
 export default function Main() {
   const userContext = useAuth()
@@ -66,7 +79,18 @@ export default function Main() {
       )
     }else{
       return(
-        <Typography>In Progress</Typography>
+        <Box p={4} sx={{
+          width: 1, 
+          height: '100%',
+          }}>
+            <Typography fontSize={20} color={"1a90ff"} textAlign="center" sx={{paddingTop:'25px'}}>
+                    You have {Math.round((Number(account?.budget) / 2000)*100)}% (${(Number(account?.budget) )}) left in your budget for this month!
+            </Typography>
+            <BorderLinearProgress variant = "determinate" value = {Math.round((Number(account?.budget) / 2000)*100) }></BorderLinearProgress>
+            <Typography fontSize={20} color={"1a90ff"} textAlign="center" sx={{paddingTop:'25px'}}>
+                    You have spent ${(2000 - Number(account?.budget) )}
+            </Typography>
+          </Box>
       )
     }
   }
