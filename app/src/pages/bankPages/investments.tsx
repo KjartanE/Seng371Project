@@ -44,6 +44,11 @@ export default function Main() {
           justifyContent: "space-evenly",
           alignItems: "center"
         }}>
+          <Typography color='#ca6eb0' variant="h3">
+            <strong>
+              You are broke and poor
+            </strong>
+          </Typography>
         </Box>
       );
     }
