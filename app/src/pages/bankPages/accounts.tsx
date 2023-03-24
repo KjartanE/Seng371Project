@@ -14,6 +14,7 @@ import { useAcc } from "@/context/AccountContext"
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 5,
+  marginTop: '15px',
   [`&.${linearProgressClasses.colorPrimary}`]: {
     backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
   },
@@ -117,11 +118,11 @@ export default function Main() {
                   >
                     {getTips(total)}
                     <Typography fontSize={20} color={"1a90ff"} textAlign="center" sx={{paddingTop:'25px'}}>
-                    You have {(Number(account?.budget) / 2000)*100}% (${(Number(account?.budget) )}) left in your budget for this month!
+                    You have {Math.round((Number(account?.budget) / 2000)*100)}% (${(Number(account?.budget) )}) left in your budget for this month!
                    </Typography>
-                    <BorderLinearProgress variant = "determinate" value = {(Number(account?.budget) / 2000)*100 }></BorderLinearProgress>
+                    <BorderLinearProgress variant = "determinate" value = {Math.round((Number(account?.budget) / 2000)*100) }></BorderLinearProgress>
                     <Typography fontSize={20} color={"1a90ff"} textAlign="center" sx={{paddingTop:'25px'}}>
-                    You have spent ${(2000 - Number(account?.budget) )} left in your budget for this month!
+                    You have spent ${(2000 - Number(account?.budget) )}
                    </Typography>
                   </Box>
           </Box>
