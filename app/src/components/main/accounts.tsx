@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import React from "react"
 import AddFunds from "./AddFunds"
 
+
 export const accountComponent = (value: number, title: string) => {
   return (
     <Paper elevation={1}>

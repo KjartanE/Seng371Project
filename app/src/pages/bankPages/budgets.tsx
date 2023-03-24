@@ -2,10 +2,11 @@ import Head from "next/head"
 import styles from "@/styles/Home.module.css"
 import { useAuth } from "../../context/UserContext"
 import { useAcc } from "@/context/AccountContext"
-import { Button, Box, Grid, Typography } from '@mui/material';
+import { Button, Box, Grid, Typography, Paper, LinearProgress } from '@mui/material';
 import { useRouter } from "next/router"
 import { useState } from "react";
 import Accounts from "@/components/main/budgets"
+import getTips from "@/helpers/tips";
 
 export default function Main() {
   const userContext = useAuth()
@@ -14,6 +15,8 @@ export default function Main() {
   const account = accountContext.currentAccount()
   const budget = account?.budget
   const user = userContext.currentUser()
+  const total = Number(account?.savings) + Number(account?.checking)
+
   // console.log('userContext', userContext);
   // console.log('userContext.currentUser()', userContext.currentUser());
 
@@ -29,6 +32,18 @@ export default function Main() {
         }}>
           <Typography color="#000000" fontSize="100">You have {budget} left in your budget.  Happy Savings :)</Typography>
           <Button variant="contained">Add Budget</Button>
+          <Paper elevation={1}>
+                  <Box
+                    p={4}
+                    sx={{
+                      flexGrow: 0,
+                      height: "100%",
+                    }}
+                  >
+                    {getTips(total)}
+                    <LinearProgress variant = "determinate" value = {(Number(account?.budget) / 2000)*100}></LinearProgress>
+                  </Box>
+                </Paper>
         </Box>    
 
         )
