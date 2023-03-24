@@ -7,6 +7,63 @@ import { useRouter } from "next/router"
 
 export default function Home() {
   const user = useAuth().currentUser()
+  const router = useRouter()
+
+  const buttonDisplay = (user) => {
+    if(user){
+      return (
+        <Box sx={{
+          height: '100%',
+          width: 1,
+          display: 'flex',
+          justifyContent: 'space-evenly',
+          alignItems: 'center',
+          backgroundColor: 'white'
+        }}>
+          <Button variant='contained' sx={{
+            height: '50%', 
+            width: '10rem'
+            }} onClick={() => router.push("/bankPages/accounts")}>Accounts</Button>
+          <Button variant='contained' sx={{
+            height: '50%', 
+            width: '10rem'
+            }} onClick={() => router.push("/bankPages/budgets")}>Budget</Button>
+            <Button variant='contained' sx={{
+            height: '50%', 
+            width: '10rem'
+            }} onClick={() => router.push("/main")}>Main</Button>
+            <Button variant='contained' sx={{
+            height: '50%', 
+            width: '10rem'
+            }} onClick={() => router.push("/bankPages/payments")}>Payments</Button>
+            <Button variant='contained' sx={{
+            height: '50%', 
+            width: '10rem'
+            }} onClick={() => router.push("/bankPages/budgets")}>Investments</Button>
+        </Box>
+      )
+    }else{
+      return (
+        <Box sx={{
+          height: '100%',
+          width: 1,
+          display: 'flex',
+          justifyContent: 'space-evenly',
+          alignItems: 'center',
+          backgroundColor: 'white'
+        }}>
+          <Button variant='contained' sx={{
+            height: '50%', 
+            width: '10rem'
+            }} onClick={() => router.push("/user/login")}>Login</Button>
+          <Button variant='contained' sx={{
+            height: '50%', 
+            width: '10rem'
+            }} onClick={() => router.push("/user/signup")}>Singup</Button>
+        </Box>
+      )
+    }
+  }
 
   return (
     <>
@@ -48,6 +105,13 @@ export default function Home() {
               </strong>
             </Typography>
           </Box>
+        </Box>
+        <Box sx={{
+            backgroundColor: "#FFFFFF",
+            width: 1,
+            height: "25%",
+          }}>
+            {buttonDisplay(user)}
         </Box>
       </>
     </>
