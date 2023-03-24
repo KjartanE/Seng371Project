@@ -33,7 +33,6 @@ export default function Main() {
 
         )
     }else{
-      console.log(budget)
       return(
         <Box sx={{
           height:"100%",
