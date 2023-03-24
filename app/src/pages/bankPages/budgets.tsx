@@ -12,7 +12,7 @@ export default function Main() {
   const router = useRouter()
   const accountContext = useAcc()
   const account = accountContext.currentAccount()
-  const [budget, setBudget] = useState(account?.budget)
+  const budget = account?.budget
   const user = userContext.currentUser()
   // console.log('userContext', userContext);
   // console.log('userContext.currentUser()', userContext.currentUser());
@@ -33,6 +33,7 @@ export default function Main() {
 
         )
     }else{
+      console.log(budget)
       return(
         <Box sx={{
           height:"100%",
