@@ -19,7 +19,7 @@ export default function Main() {
   const account = accountContext.currentAccount()
   const total = Number(account?.savings) + Number(account?.checking)
 
-  const adaptiveDisplay = (total) => {
+  const adaptiveDisplay = (total: number) => {
     if(total > 10000){
       return(
         <Box p={4} sx={{
