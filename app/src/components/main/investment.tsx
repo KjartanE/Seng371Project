@@ -74,19 +74,19 @@ export default function Invest() {
           justifyContent: 'space-evenly'
         }}
       >
-        <Button color="primary" onClick={handleOpen} sx={{ padding: '15px' }} variant="contained">
+        <Button color="tertiary" onClick={handleOpen} sx={{ padding: '15px' }} variant="contained">
           Stocks
         </Button>
 
-        <Button color="primary" onClick={handleOpen} sx={{ padding: '15px' }} variant="contained">
+        <Button color="tertiary" onClick={handleOpen} sx={{ padding: '15px' }} variant="contained">
           Bonds
         </Button>
 
-        <Button color="primary" onClick={handleOpen} sx={{ padding: '15px' }} variant="contained">
+        <Button color="tertiary" onClick={handleOpen} sx={{ padding: '15px' }} variant="contained">
           Real Estate
         </Button>
 
-        <Button color="primary" onClick={handleOpen} sx={{ padding: '15px' }} variant="contained">
+        <Button color="tertiary" onClick={handleOpen} sx={{ padding: '15px' }} variant="contained">
           Mutual Funds
         </Button>
       </Box>

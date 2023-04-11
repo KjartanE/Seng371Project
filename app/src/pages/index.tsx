@@ -22,6 +22,7 @@ export default function Home() {
             backgroundColor: 'white'
           }}>
           <Button
+            color="tertiary"
             onClick={() => router.push('/bankPages/accounts')}
             sx={{
               height: '50%',
@@ -32,6 +33,7 @@ export default function Home() {
           </Button>
 
           <Button
+            color="tertiary"
             onClick={() => router.push('/bankPages/budgets')}
             sx={{
               height: '50%',
@@ -42,6 +44,7 @@ export default function Home() {
           </Button>
 
           <Button
+            color="tertiary"
             onClick={() => router.push('/main')}
             sx={{
               height: '50%',
@@ -52,6 +55,7 @@ export default function Home() {
           </Button>
 
           <Button
+            color="tertiary"
             onClick={() => router.push('/bankPages/payments')}
             sx={{
               height: '50%',
@@ -62,6 +66,7 @@ export default function Home() {
           </Button>
 
           <Button
+            color="tertiary"
             onClick={() => router.push('/bankPages/investments')}
             sx={{
               height: '50%',

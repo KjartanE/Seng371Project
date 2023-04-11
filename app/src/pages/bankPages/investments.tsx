@@ -28,7 +28,7 @@ export default function Main() {
             justifyContent: 'space-evenly',
             alignItems: 'center'
           }}>
-          <Typography color="#ca6eb0" variant="h3">
+          <Typography color="#1a90ff" variant="h3">
             <strong>Your budget: {budget}</strong>
           </Typography>
         </Box>
@@ -44,7 +44,7 @@ export default function Main() {
           justifyContent: 'space-evenly',
           alignItems: 'center'
         }}>
-        <Typography color="#ca6eb0" variant="h3">
+        <Typography color="#1a90ff" variant="h3">
           <strong>You are broke and poor</strong>
         </Typography>
       </Box>
@@ -74,7 +74,7 @@ export default function Main() {
           <Grid container spacing={2} sx={{ paddingTop: '35px' }}>
             <Grid item xs={2}>
               <Button
-                color="secondary"
+                color="tertiary"
                 onClick={() => {
                   router.push('/main');
                 }}

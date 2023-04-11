@@ -66,7 +66,7 @@ export default function Accounts() {
 
       <Paper elevation={1}>
         <Box p={4}>
-          <Button color="primary" onClick={handleOpen} sx={{ padding: '15px' }} variant="contained">
+          <Button color="tertiary" onClick={handleOpen} sx={{ padding: '15px' }} variant="contained">
             Time to Create a Budget!
           </Button>
 

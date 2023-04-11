@@ -10,6 +10,9 @@ export const theme = createTheme({
     },
     background: {
       default: '#ededed'
+    },
+    tertiary: {
+      main: '#1a90ff'
     }
   },
   typography: {

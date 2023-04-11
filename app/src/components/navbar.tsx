@@ -23,8 +23,8 @@ const NavBar: NextPage = () => {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="static" >
+      <Container maxWidth="xl" color="tertiary">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
             <Button onClick={() => router.push('/')}>

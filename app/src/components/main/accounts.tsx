@@ -72,7 +72,7 @@ export default function Accounts() {
             </Typography>
           </Button>
 
-          <Button color="primary" onClick={handleOpen} sx={{ padding: '15px' }} variant="contained">
+          <Button color="tertiary" onClick={handleOpen} sx={{ padding: '15px' }} variant="contained">
             Transfer Between Accounts
           </Button>
 

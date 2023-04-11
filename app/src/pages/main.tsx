@@ -42,7 +42,7 @@ export default function Main() {
             justifyContent: 'space-evenly'
           }}>
           <Button
-            color="primary"
+            color="tertiary"
             onClick={() => router.push('/bankPages/investments')}
             sx={{ padding: '15px', width: '150px', height: '75px' }}
             variant="contained">
@@ -50,7 +50,7 @@ export default function Main() {
           </Button>
 
           <Button
-            color="primary"
+            color="tertiary"
             onClick={() => router.push('/bankPages/investments')}
             sx={{ padding: '15px', width: '150px', height: '75px' }}
             variant="contained">
@@ -58,7 +58,7 @@ export default function Main() {
           </Button>
 
           <Button
-            color="primary"
+            color="tertiary"
             onClick={() => router.push('/bankPages/investments')}
             sx={{ padding: '15px', width: '150px', height: '75px' }}
             variant="contained">
@@ -66,7 +66,7 @@ export default function Main() {
           </Button>
 
           <Button
-            color="primary"
+            color="tertiary"
             onClick={() => router.push('/bankPages/investments')}
             sx={{ padding: '15px', width: '150px', height: '75px' }}
             variant="contained">

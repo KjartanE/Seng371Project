@@ -35,11 +35,10 @@ export default function Main() {
           }}
         >
           <Typography color="#000000" fontSize="100">
-            You have
-            {budget} left in your budget. Happy Savings :)
+            You have {budget} left in your budget. Happy Savings :)
           </Typography>
 
-          <Button variant="contained">Add Budget</Button>
+          <Button color="tertiary" variant="contained">Add Budget</Button>
 
           <Paper elevation={1}>
             <Box
@@ -101,7 +100,7 @@ export default function Main() {
           <Grid container spacing={2} sx={{ paddingTop: '35px' }}>
             <Grid item xs={2}>
               <Button
-                color="secondary"
+                color="tertiary"
                 onClick={() => {
                   router.push('/main');
                 }}

@@ -89,7 +89,7 @@ export default function SubtractFunds(props: { handleClose: () => void }) {
                   display: { xs: 'none', md: 'flex' }
                 }}
               >
-                <Button color="primary" onClick={handleSubmit} sx={{ padding: '5px' }} variant="contained">
+                <Button color="tertiary" onClick={handleSubmit} sx={{ padding: '5px' }} variant="contained">
                   Send Funds
                 </Button>
               </Box>
