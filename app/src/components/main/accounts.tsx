@@ -13,15 +13,13 @@ export const accountComponent = (value: number, title: string) => (
       sx={{
         flexGrow: 0,
         display: { xs: 'none', md: 'flex' }
-      }}
-    >
+      }}>
       <Box
         p={4}
         sx={{
           flexGrow: 1,
           height: '100%'
-        }}
-      >
+        }}>
         <Typography color="black" fontSize={40} textAlign="left">
           {title}
         </Typography>
@@ -31,8 +29,7 @@ export const accountComponent = (value: number, title: string) => (
         sx={{
           flexGrow: 0,
           height: '100%'
-        }}
-      >
+        }}>
         <Typography color={theme.palette.primary.main} fontSize={40} textAlign="left">
           ${value}
         </Typography>
@@ -59,9 +56,10 @@ export default function Accounts() {
         aria-describedby="modal-modal-description"
         aria-labelledby="modal-modal-title"
         onClose={handleClose}
-        open={open}
-      >
-        <AddFunds handleClose={handleClose} />
+        open={open}>
+        <>
+          <AddFunds handleClose={handleClose} />
+        </>
       </Modal>
 
       <Paper elevation={1}>

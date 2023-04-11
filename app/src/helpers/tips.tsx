@@ -70,19 +70,19 @@ const over = [
    */
 ];
 
-export default function getTips(amount: number): string {
+export default function getTips(amount: number) {
   if (amount < 1000) {
     const idx = getRandomInt(6);
 
-    return less[idx];
+    return <>{less[idx]}</>;
   } else if (amount >= 1000 && amount < 5000) {
     const idx = getRandomInt(5);
 
-    return between[idx];
+    return <>{between[idx]}</>;
   } else if (amount >= 5000) {
     const idx = getRandomInt(5);
 
-    return over[idx];
+    return <>{over[idx]}</>;
   }
 
   return 'invalid budget';
