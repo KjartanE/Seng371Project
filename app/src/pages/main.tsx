@@ -28,75 +28,6 @@ export default function Main() {
   const account = accountContext.currentAccount();
   const total = Number(account?.savings) + Number(account?.checking);
 
-  const adaptiveDisplay = (total: number) => {
-    if (total > 10000) {
-      return (
-        <Box
-          p={4}
-          sx={{
-            width: 1,
-            height: '100%',
-            backgroundColor: 'white',
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-evenly'
-          }}>
-          <Button
-            color="tertiary"
-            onClick={() => router.push('/bankPages/investments')}
-            sx={{ padding: '15px', width: '150px', height: '75px' }}
-            variant="contained">
-            Stocks
-          </Button>
-
-          <Button
-            color="tertiary"
-            onClick={() => router.push('/bankPages/investments')}
-            sx={{ padding: '15px', width: '150px', height: '75px' }}
-            variant="contained">
-            Bonds
-          </Button>
-
-          <Button
-            color="tertiary"
-            onClick={() => router.push('/bankPages/investments')}
-            sx={{ padding: '15px', width: '150px', height: '75px' }}
-            variant="contained">
-            Real Estate
-          </Button>
-
-          <Button
-            color="tertiary"
-            onClick={() => router.push('/bankPages/investments')}
-            sx={{ padding: '15px', width: '150px', height: '75px' }}
-            variant="contained">
-            Mutual Funds
-          </Button>
-        </Box>
-      );
-    }
-
-    return (
-      <Box
-        p={4}
-        sx={{
-          width: 1,
-          height: '100%'
-        }}>
-        <Typography color="1a90ff" fontSize={20} sx={{ paddingTop: '25px' }} textAlign="center">
-          You have {Math.round((Number(account?.budget) / 2000) * 100)}% ($
-          {Number(account?.budget)}) left in your budget for this month!
-        </Typography>
-
-        <BorderLinearProgress value={Math.round((Number(account?.budget) / 2000) * 100)} variant="determinate" />
-
-        <Typography color="1a90ff" fontSize={20} sx={{ paddingTop: '25px' }} textAlign="center">
-          You have spent ${2000 - Number(account?.budget)}
-        </Typography>
-      </Box>
-    );
-  };
-
   return (
     <>
       <Head>
@@ -129,10 +60,7 @@ export default function Main() {
             />
 
             <Typography color="white" fontSize={100} textAlign="left">
-              <strong>
-                Good morning
-                {user?.username}
-              </strong>
+              <strong>Good morning, {user?.username}</strong>
             </Typography>
           </Box>
         </Paper>
@@ -174,7 +102,69 @@ export default function Main() {
                 </Paper>
 
                 <Paper elevation={1}>
-                  <Box sx={{ marginTop: '25px', height: '37.5vh' }}>{adaptiveDisplay(total)}</Box>
+                  <Box sx={{ marginTop: '25px', height: '37.5vh' }}>
+                    {total > 10000 && (
+                      <Box
+                        p={4}
+                        sx={{
+                          width: 1,
+                          height: '100%',
+                          backgroundColor: 'white',
+                          display: 'flex',
+                          flexWrap: 'wrap',
+                          justifyContent: 'space-evenly'
+                        }}>
+                        <Button
+                          onClick={() => router.push('/bankPages/investments')}
+                          sx={{ padding: '15px', width: '150px', height: '75px' }}
+                          variant="contained">
+                          Stocks
+                        </Button>
+
+                        <Button
+                          onClick={() => router.push('/bankPages/investments')}
+                          sx={{ padding: '15px', width: '150px', height: '75px' }}
+                          variant="contained">
+                          Bonds
+                        </Button>
+
+                        <Button
+                          onClick={() => router.push('/bankPages/investments')}
+                          sx={{ padding: '15px', width: '150px', height: '75px' }}
+                          variant="contained">
+                          Real Estate
+                        </Button>
+
+                        <Button
+                          onClick={() => router.push('/bankPages/investments')}
+                          sx={{ padding: '15px', width: '150px', height: '75px' }}
+                          variant="contained">
+                          Mutual Funds
+                        </Button>
+                      </Box>
+                    )}
+
+                    <Box
+                      p={4}
+                      sx={{
+                        width: 1,
+                        height: '100%'
+                      }}>
+                      <Typography color="1a90ff" fontSize={20} sx={{ paddingTop: '25px' }} textAlign="center">
+                        You have {Math.round((Number(account?.budget) / 2000) * 100)}% ($
+                        {Number(account?.budget)}) left in your budget for this month!
+                      </Typography>
+
+                      <BorderLinearProgress
+                        value={Math.round((Number(account?.budget) / 2000) * 100)}
+                        variant="determinate"
+                      />
+
+                      <Typography color="1a90ff" fontSize={20} sx={{ paddingTop: '25px' }} textAlign="center">
+                        You have spent ${2000 - Number(account?.budget)}
+                      </Typography>
+                    </Box>
+                  </Box>
                 </Paper>
               </Box>
             </Box>
