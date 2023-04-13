@@ -101,15 +101,15 @@ async function create(user: any) {
       [loginResult.insertId, user.username, user.username]
     );
     // Console.log("userResult", userResult)
-
+    console.log("before")
     const accountResult = await excuteQuery(
       `
-      INSERT INTO accounts(user_id,checking, savings, credit,credit_limit, budget) VALUES(?,?,?,?,?,?);
+      INSERT INTO accounts(user_id,checking, savings, credit,credit_limit, budget, spent) VALUES(?,?,?,?,?,?,?);
       `,
-      [userResult.insertId, 100, 100, 100, 1000, 2000]
+      [userResult.insertId, 100, 100, 100, 1000, 2000, 10]
     );
     // Console.log("accountResult", accountResult)
-
+    console.log("after")
     return loginResult;
   } catch (error) {
     console.log(error);

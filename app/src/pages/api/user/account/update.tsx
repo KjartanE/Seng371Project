@@ -25,8 +25,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await accountRepo.updateCreditAccount(accountId, updatedAmount);
   }
   if (Number(value) < 0) {
-    updatedAmount = Number(account.budget) + Number(value);
-    await accountRepo.updateBudget(accountId, updatedAmount);
+    updatedAmount = Number(account.spent) + (Number(value) * -1);
+    await accountRepo.updateSpent(accountId, updatedAmount);
   }
 
   // Return updated account info

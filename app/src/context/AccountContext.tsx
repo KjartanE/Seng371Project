@@ -10,13 +10,15 @@ export type accContextType = {
   getAccount: (accountId: number) => Promise<IAccount | undefined> | null;
   currentAccount: () => IAccount | undefined;
   addFunds: (value: number, updateAccount: string) => Promise<any | undefined> | null;
+  subtractFunds: (value: number, updateAccount: string) => Promise<any | undefined> | null;
 };
 
 const accContextDefaultValues: accContextType = {
   account: null,
   getAccount: (x: any) => null,
   currentAccount: () => undefined,
-  addFunds: (value: number, updateAccount: string) => null
+  addFunds: (value: number, updateAccount: string) => null,
+  subtractFunds: (value: number, updateAccount: string) => null
 };
 
 const AccContext = createContext<accContextType>(accContextDefaultValues);

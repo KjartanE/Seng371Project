@@ -8,13 +8,15 @@ export interface IAccount {
   credit: number;
   credit_limit: number;
   budget: number;
+  spent: number;
 }
 export const accountRepo = {
   getRecord: (x: any) => getRecordByLoginId(x),
   updateCheckingAccount: (aID: number, val: number) => updateCheckingAccount(aID, val),
   updatSavingsAccount: (aID: number, val: number) => updatSavingsAccount(aID, val),
   updateCreditAccount: (aID: number, val: number) => updateCreditAccount(aID, val),
-  updateBudget: (aID: number, val: number) => updateBudget(aID, val)
+  updateBudget: (aID: number, val: number) => updateBudget(aID, val),
+  updateSpent: (aID: number, val: number) => updateSpent(aID, val)
 };
 
 const getRecordByLoginId = async (accountId: number): Promise<IAccount | undefined> => {
@@ -110,3 +112,23 @@ const updateBudget = async (accountId: number, value: number): Promise<IAccount 
     console.log(error);
   }
 };
+
+const updateSpent = async (accountId: number, value: number): Promise<IAccount | undefined> => {
+  try {
+    const result = await excuteQuery(
+      `
+      UPDATE accounts
+      SET spent = '?'
+      WHERE account_id = ?;
+      `,
+      [value, accountId]
+    );
+
+    if (result) {
+      return result;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+

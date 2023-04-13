@@ -14,15 +14,16 @@ export default function Main() {
   const accountContext = useAcc();
   const account = accountContext.currentAccount();
   const budget = account?.budget;
+  const spent = account?.spent;
   const user = userContext.currentUser();
   const total = Number(account?.savings) + Number(account?.checking);
-
+  console.log(account)
   /*
    * Console.log('userContext', userContext);
    * console.log('userContext.currentUser()', userContext.currentUser());
    */
 
-  const budgetDisplay = (budget) => {
+  const budgetDisplay = (budget, spent) => {
     if (budget > 0) {
       return (
         <Box
@@ -35,7 +36,7 @@ export default function Main() {
           }}
         >
           <Typography color="#000000" fontSize="100">
-            You have {budget} left in your budget. Happy Savings :)
+            You have spent {spent} of your {budget} budget. Happy Savings :)
           </Typography>
 
           <Button color="tertiary" variant="contained">Add Budget</Button>
@@ -50,7 +51,7 @@ export default function Main() {
             >
               {getTips(total)}
 
-              <LinearProgress value={(Number(account?.budget) / 2000) * 100} variant="determinate" />
+              <LinearProgress value={(Number(account?.spent) / Number(account?.budget)) * 100} variant="determinate" />
             </Box>
           </Paper>
         </Box>
@@ -124,7 +125,7 @@ export default function Main() {
             position: 'top'
           }}
         >
-          {budgetDisplay(budget)}
+          {budgetDisplay(budget, spent)}
         </Box>
       </main>
     </>
