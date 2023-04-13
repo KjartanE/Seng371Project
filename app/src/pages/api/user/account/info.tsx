@@ -20,6 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     savings: account.savings,
     credit: account.credit,
     credit_limit: account.credit_limit,
-    budget: account.budget
+    budget: account.budget,
+    spent: account.spent
   });
 }
