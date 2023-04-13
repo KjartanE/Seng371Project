@@ -100,12 +100,12 @@ export default function Main() {
               }}>
               {getTips(total)}
               <Typography color="1a90ff" fontSize={20} sx={{ paddingTop: '25px' }} textAlign="center">
-                You have {Math.round((Number(account?.budget) / 2000) * 100)}% (${Number(account?.budget)}) left in your
+                You have {Math.round((Number(account?.spent) / Number(account?.budget)) * 100)}% (${Number(account?.budget) - Number(account?.spent)}) left in your
                 budget for this month!
               </Typography>
-              <BorderLinearProgress value={Math.round((Number(account?.budget) / 2000) * 100)} variant="determinate" />
+              <BorderLinearProgress value={Math.round((Number(account?.spent) / Number(account?.budget)) * 100)} variant="determinate" />
               <Typography color="1a90ff" fontSize={20} sx={{ paddingTop: '25px' }} textAlign="center">
-                You have spent ${2000 - Number(account?.budget)}
+                You have spent ${Number(account?.spent)} of ${Number(account?.budget)}
               </Typography>
             </Box>
           </Box>

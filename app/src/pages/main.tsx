@@ -151,17 +151,17 @@ export default function Main() {
                         height: '100%'
                       }}>
                       <Typography color="1a90ff" fontSize={20} sx={{ paddingTop: '25px' }} textAlign="center">
-                        You have {Math.round((Number(account?.budget) / 2000) * 100)}% ($
-                        {Number(account?.budget)}) left in your budget for this month!
+                        You have {Math.round((Number(account?.spent) / Number(account?.budget)) * 100)}% ($
+                          {Number(account?.budget) - Number(account?.spent)}) left in your budget for this month!
                       </Typography>
 
                       <BorderLinearProgress
-                        value={Math.round((Number(account?.budget) / 2000) * 100)}
+                        value={Math.round((Number(account?.spent) / Number(account?.budget)) * 100)}
                         variant="determinate"
                       />
 
                       <Typography color="1a90ff" fontSize={20} sx={{ paddingTop: '25px' }} textAlign="center">
-                        You have spent ${2000 - Number(account?.budget)}
+                        You have spent ${Number(account?.spent)}
                       </Typography>
                     </Box>
                   </Box>
