@@ -73,9 +73,9 @@ To get started with this project, follow these steps:
 3. Start the development server by running `npm run dev`
 4. Open your web browser and go to `http://localhost:3000`
 
-## Available scripts
+# Available scripts
 
-In the Home directory, you can run:
+## In the Home directory, you can run:
 
 ## make web
 
@@ -93,7 +93,7 @@ Access logs for app
 
 Access logs for db
 
-In the project directory, you can run:
+# In the project directory, you can run:
 
 ### `npm run dev`
 
@@ -119,4 +119,3 @@ Runs the test suite using Jest.
 
 Starts the app and its dependencies in Docker containers.
 
-## Conclusion
